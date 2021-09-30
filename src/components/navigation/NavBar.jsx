@@ -6,7 +6,7 @@ import MobileMenu from './MobileMenu';
 import MobileSearchForm from './MobileSearchForm';
 // import DesktopMenu from './DesktopMenu';
 
-const NavBar = () => {
+const NavBar = ({ setQuery, setIsDateEntered, handleSubmit }) => {
 	const [searchIsActive, setSearchIsActive] = useState(false);
 	const [menuIsOpen, setMenuIsOpen] = useState(false);
 
@@ -60,10 +60,14 @@ const NavBar = () => {
 					}`}
 				/>
 			</nav>
+
 			<nav className='mobileNav' aria-label='Mobile navigation'>
 				{!menuIsOpen && (
 					<MobileSearchForm
-						onClick={handleSearchClick}
+						handleSearchClick={handleSearchClick}
+						handleSubmit={handleSubmit}
+						setQuery={setQuery}
+						setIsDateEntered={setIsDateEntered}
 						searchIsActive={searchIsActive}
 					/>
 				)}
