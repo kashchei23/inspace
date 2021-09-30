@@ -22,13 +22,15 @@ const App = () => {
 				<Delete />
 				<Switch>
 					<Route exact path='/'>
+						<h3>Home</h3>
+					</Route>
+					<Route path='/list'>
 						<DataContextWrapper
 							query={query}
 							isDateEntered={isDateEntered}
 							setIsDateEntered={setIsDateEntered}
 						/>
 					</Route>
-					<Route path='/apod'>{/* <Delete /> */}</Route>
 				</Switch>
 			</BrowserRouter>
 		</div>

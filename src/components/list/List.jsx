@@ -1,63 +1,45 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { Switch, Link, Route, useRouteMatch, Redirect } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { NasaDataContext } from '../dataContextWrapper/NasaContext';
 
-import PictureOfTheDay from '../pictureOfTheDay/PictureOfTheDay';
-const List = ({ nasaData }) => {
-	const displayedRef = useRef(null);
+import './List.scss';
 
+const List = ({ handleClick }) => {
+	// const displayedRef = useRef(null);
+	const nasaData = useContext(NasaDataContext);
 	useEffect(() => {
-		console.log('from List nasa', nasaData);
-		console.log('from List nasa', nasaData.date);
 		// if (displayedRef.current) {
 		// 	displayedRef.current.setAttribute('class', 'nasa-data');
 		// }
 	}, [nasaData]);
-
-	let { url, path } = useRouteMatch();
-
-	useEffect(() => {
-		console.log(url, path);
-	});
-
-	const [visible, setVisible] = useState(true);
-
-	const handleClick = () => {
-		setVisible(!visible);
-	};
-
 	return (
 		<>
-			{nasaData.map((data) => {
-				return (
-					<>
-						{visible ? (
-							<>
-								<h1>List Component</h1>
-								<div className='nasa-data' ref={displayedRef} key={data.title}>
-									<h4 className='nasa-data-title'>{data.title}</h4>
-									<Link to={`${url}/${data.date}`} onClick={handleClick}>
-										<img
-											className='nasa-data-img'
-											src={data.url}
-											alt={data.title}
-										/>
-									</Link>
-									<p className='nasa-data-txt'>{data.date}</p>
-								</div>
-							</>
-						) : (
-							<>
-								<Switch>
-									<Redirect from='//*' to='/*' />
-									<Route path={`${path}/${data.date}`}>
-										<PictureOfTheDay data={data} onClick={handleClick} />
-									</Route>
-								</Switch>
-							</>
-						)}
-					</>
-				);
-			})}
+			<p>List component</p>
+			{nasaData ? (
+				<div className='list'>
+					{nasaData.date}
+					{nasaData.map((data) => {
+						return (
+							<div key={data.date}>
+								{data.date}
+								<Link
+									to={`/list/potd/${data.date}`}
+									className='nasa-data-title'
+									name={data.date}
+									onClick={handleClick}
+								>
+									{data.title}
+								</Link>
+							</div>
+						);
+					})}
+				</div>
+			) : (
+				<>
+					<p>No search entered</p>
+					<button type='submit'>Search</button>
+				</>
+			)}
 		</>
 	);
 };

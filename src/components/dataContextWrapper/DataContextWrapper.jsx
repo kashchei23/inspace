@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
+
 import axios from 'axios';
 
 import { NasaDataProvider } from './NasaContext';
@@ -29,11 +31,24 @@ const DataContextWrapper = ({ query, isDateEntered, setIsDateEntered }) => {
 		}
 	}, [query, isDateEntered, setIsDateEntered]);
 
+	const [endpoint, setEndpoint] = useState('');
+	const handleClick = (e) => {
+		setEndpoint(e.target.name);
+	};
+
+	useEffect(() => {}, [endpoint]);
+
 	return (
 		<>
 			<NasaDataProvider value={nasaData}>
-				<List />
-				<PictureOfTheDay />
+				<Switch>
+					<Route exact path='/list'>
+						<List handleClick={handleClick} />
+					</Route>
+					<Route path={`/list/potd/${endpoint}`}>
+						<PictureOfTheDay endpoint={endpoint} />
+					</Route>
+				</Switch>
 			</NasaDataProvider>
 		</>
 	);

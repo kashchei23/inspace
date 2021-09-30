@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import './ImageList.scss';
 
 const initialQueryState = { fromDate: '', toDate: '' };
 
-const ImageList = (props) => {
+// TODO Form should only get API data
+// TODO Form should then pass API data to List component
+// TODO List should send data to Picture component
+
+const ImageList = () => {
 	const DATE_PATTERN =
 		'(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))';
 
@@ -14,7 +19,10 @@ const ImageList = (props) => {
 	const inputFromRef = useRef(null);
 	const inputToRef = useRef(null);
 
-	const [nasaData, setData] = useState([]);
+	//* Initialize state with data in local storage
+	const [nasaData, setData] = useState(
+		JSON.parse(localStorage.getItem('storedObj'))
+	);
 	const displayedRef = useRef(null);
 
 	//* Set dates for search query
@@ -30,6 +38,7 @@ const ImageList = (props) => {
 			toDate: endDate,
 		});
 		setIsDateEntered(true);
+
 		inputFromRef.current.value = '';
 		inputToRef.current.value = '';
 	};
@@ -42,6 +51,8 @@ const ImageList = (props) => {
 				`${nasaUrl}?start_date=${query.fromDate}&end_date=${query.toDate}&api_key=${process.env.REACT_APP_API_KEY}`
 			);
 			setData(response.data);
+			//* Store response in local storage for later retrieval
+			localStorage.setItem('storedObj', JSON.stringify(response.data));
 		};
 
 		//* Fetch data on condition that valid dates have been entered
@@ -92,8 +103,14 @@ const ImageList = (props) => {
 					return (
 						<div className='nasa-data' ref={displayedRef} key={data.title}>
 							<h4 className='nasa-data-title'>{data.title}</h4>
-							<img className='nasa-data-img' src={data.url} alt={data.title} />
-							<p className='nasa-data-txt'>{data.explanation}</p>
+							<Link to='/' onClick={() => console.log('/')}>
+								<img
+									className='nasa-data-img'
+									src={data.url}
+									alt={data.title}
+								/>
+							</Link>
+							<p className='nasa-data-txt'>{data.date}</p>
 						</div>
 					);
 				})}
