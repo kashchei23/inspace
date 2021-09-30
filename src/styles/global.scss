@@ -1,0 +1,31 @@
+@import './_colors.scss';
+@import './_breakpoints';
+@import './normalize.scss';
+
+// $globalFont: hero-new-regular, sans-serif;
+// $globalFont: hero-new-ultralight, sans-serif;
+$globalFont: hero-new, sans-serif;
+
+html {
+	background-color: $off-black;
+	box-sizing: border-box;
+	font-family: $globalFont;
+	font-display: swap;
+	font-style: normal;
+	color: $off-white;
+}
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+h1 {
+	font-size: 32px;
+	font-weight: 600;
+}
+
+h2 {
+	font-size: 24px;
+	font-weight: 600;
+}

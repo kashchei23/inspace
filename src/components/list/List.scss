@@ -1,0 +1,72 @@
+.list {
+	margin-top: 100px;
+}
+
+h4 {
+	font-family: hero-new-ultralight, sans-serif;
+	font-style: normal;
+	font-weight: 200;
+	font-size: 28px;
+}
+
+p {
+	line-height: 1.5;
+}
+
+img {
+	width: 100%;
+	height: auto;
+}
+
+.nasa-data {
+	margin-top: 150px;
+	opacity: 1;
+	position: relative;
+}
+.nasa-data-title {
+	animation: 1s forwards ease textReveal;
+	opacity: 0;
+	letter-spacing: 2px;
+	/* position: absolute;
+	top: 50%;
+	right: 50%;
+	z-index: 3;
+	transform: translate(50%, -50%);
+	color: red; */
+	width: 100%;
+	text-align: center;
+}
+
+.nasa-data-img {
+	animation: 1s forwards 1s ease fadeIn;
+	opacity: 0;
+}
+.nasa-data-txt {
+	animation: 2s forwards 1s ease fadeIn;
+	opacity: 0;
+}
+
+.hide {
+	transition: all 0.5s ease;
+	opacity: 0;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes textReveal {
+	0% {
+		letter-spacing: 4px;
+		opacity: 0;
+	}
+	100% {
+		letter-spacing: 2px;
+		opacity: 1;
+	}
+}

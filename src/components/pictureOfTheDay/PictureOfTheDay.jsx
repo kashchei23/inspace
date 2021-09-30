@@ -19,7 +19,14 @@ const PictureOfTheDay = ({ endpoint, onClick }) => {
 
 	return (
 		<>
-			<p>Picture of the Day component</p>
+			<Link to='/list' onClick={onClick}>
+				<img
+					src='https://res.cloudinary.com/obkidz/image/upload/v1633031774/icons/chevron-off-white_f9t997.png'
+					alt='navigate back chevron'
+					className='back-icon'
+				/>
+			</Link>
+			<p>Picture of the Day</p>
 			{nasaData && (
 				<>
 					<h1 className='nasa-data-txt'>{chosenImage.title}</h1>

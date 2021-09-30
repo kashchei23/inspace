@@ -35,6 +35,7 @@ const MobileSearchForm = ({
 	return (
 		<>
 			<div className={`search-menu ${searchIsActive && 'show'}`}>
+				<p>Enter your search dates</p>
 				<form onSubmit={handleSubmit}>
 					<div className='formInputs'>
 						<label htmlFor='fromDate'>Start date</label>

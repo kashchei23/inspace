@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import NavBar from './navigation/NavBar';
-import Delete from './Delete';
+import DeleteThisComponent from './DeleteThisComponent ';
 import DataContextWrapper from './dataContextWrapper/DataContextWrapper';
+import Home from './home/Home';
+import About from './about/About';
+import Footer from './footer/Footer';
+import Developer from './developer/Developer';
 
 import '../styles/global.scss';
 import './App.scss';
@@ -19,10 +23,16 @@ const App = () => {
 		<div>
 			<BrowserRouter>
 				<NavBar setQuery={setQuery} setIsDateEntered={setIsDateEntered} />
-				<Delete />
+				<DeleteThisComponent />
 				<Switch>
 					<Route exact path='/'>
-						<h3>Home</h3>
+						<Home />
+					</Route>
+					<Route path='/about'>
+						<About />
+					</Route>
+					<Route path='/developer'>
+						<Developer />
 					</Route>
 					<Route path='/list'>
 						<DataContextWrapper
@@ -32,6 +42,7 @@ const App = () => {
 						/>
 					</Route>
 				</Switch>
+				<Footer />
 			</BrowserRouter>
 		</div>
 	);

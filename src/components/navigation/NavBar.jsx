@@ -3,21 +3,21 @@ import { Link } from 'react-router-dom';
 
 import './Navbar.scss';
 import MobileMenu from './MobileMenu';
-import MobileSearchForm from './MobileSearchForm';
+import MobileSearchForm from '../form/MobileSearchForm';
 // import DesktopMenu from './DesktopMenu';
 
 const NavBar = ({ setQuery, setIsDateEntered, handleSubmit }) => {
-	const [searchIsActive, setSearchIsActive] = useState(false);
 	const [menuIsOpen, setMenuIsOpen] = useState(false);
+	const [searchIsActive, setSearchIsActive] = useState(false);
 
 	const handleSearchClick = () => {
-		setSearchIsActive(!searchIsActive);
+		setSearchIsActive((prevSearchIsActive) => !prevSearchIsActive);
 		setMenuIsOpen(false);
 	};
 
 	const handleMenuClick = () => {
 		setSearchIsActive(false);
-		setMenuIsOpen(!menuIsOpen);
+		setMenuIsOpen((prevMenuIsOpen) => !prevMenuIsOpen);
 	};
 
 	const scrollToTop = () => {

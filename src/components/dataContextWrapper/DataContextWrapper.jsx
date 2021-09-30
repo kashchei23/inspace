@@ -36,8 +36,6 @@ const DataContextWrapper = ({ query, isDateEntered, setIsDateEntered }) => {
 		setEndpoint(e.target.name);
 	};
 
-	useEffect(() => {}, [endpoint]);
-
 	return (
 		<>
 			<NasaDataProvider value={nasaData}>
