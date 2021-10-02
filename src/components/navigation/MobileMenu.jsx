@@ -1,27 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { MobileNavLink } from './MobileNavLink';
+import { NasaDataContext } from '../../context/NasaContext';
 
-const MobileMenu = ({ onClick, menuIsOpen }) => {
-	const handleMenuClick = () => {
-		onClick();
-	};
-
+const MobileMenu = () => {
+	const { navState } = useContext(NasaDataContext);
 	return (
 		<>
-			<div className={`mobile-menu ${menuIsOpen && 'show'}`}>
+			<div className={`mobile-menu ${navState.isMenuOpen && 'show'}`}>
 				<div className='mobile-menu-links'>
-					<Link to='/' onClick={handleMenuClick}>
-						Today's Picture
-					</Link>
-					<Link to='/about' onClick={handleMenuClick}>
-						About
-					</Link>
-					<Link to='/developer' onClick={handleMenuClick}>
-						Developer
-					</Link>
-					<a href='#contact' onClick={handleMenuClick}>
-						Contact
-					</a>
+					<MobileNavLink to='/' text='Home' />
+					<MobileNavLink to='/about' text='About' />
+					<MobileNavLink to='/developer' text='Developer' />
+					<MobileNavLink to='#contact' text='Contact' />
 				</div>
 				<div className='nav-border' />
 			</div>

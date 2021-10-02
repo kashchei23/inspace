@@ -1,23 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Navbar.scss';
 import MobileMenu from './MobileMenu';
 import MobileSearchForm from '../form/MobileSearchForm';
 // import DesktopMenu from './DesktopMenu';
+import { NasaDataContext } from '../../context/NasaContext';
 
-const NavBar = ({ setQuery, setIsDateEntered, handleSubmit }) => {
-	const [menuIsOpen, setMenuIsOpen] = useState(false);
+const NavBar = ({ setQuery, setIsDateEntered }) => {
+	const { navState } = useContext(NasaDataContext);
+
 	const [searchIsActive, setSearchIsActive] = useState(false);
 
 	const handleSearchClick = () => {
-		setSearchIsActive((prevSearchIsActive) => !prevSearchIsActive);
-		setMenuIsOpen(false);
+		navState.setSearchIsActive((prevSearchIsActive) => !prevSearchIsActive);
+		navState.setIsMenuOpen(false);
 	};
 
-	const handleMenuClick = () => {
-		setSearchIsActive(false);
-		setMenuIsOpen((prevMenuIsOpen) => !prevMenuIsOpen);
+	const toggleMenu = () => {
+		navState.setSearchIsActive(false);
+		navState.setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
 	};
 
 	const scrollToTop = () => {
@@ -44,43 +46,64 @@ const NavBar = ({ setQuery, setIsDateEntered, handleSubmit }) => {
 						/>
 					</div>
 					<button
-						className={`menu-button ${menuIsOpen && 'menu-button-open'}`}
-						onClick={handleMenuClick}
+						className={`menu-button ${
+							navState.isMenuOpen && 'menu-button-open'
+						}`}
+						onClick={toggleMenu}
 						id='menu-button'
 					>
-						<div className={`menu-button-bars ${menuIsOpen && 'open-menu'}`} />
-						<div className={`menu-button-bars ${menuIsOpen && 'open-menu'}`} />
-						<div className={`menu-button-bars ${menuIsOpen && 'open-menu'}`} />
-						<div className={`menu-button-bars ${menuIsOpen && 'open-menu'}`} />
+						<div
+							className={`menu-button-bars ${
+								navState.isMenuOpen && 'open-menu'
+							}`}
+						/>
+						<div
+							className={`menu-button-bars ${
+								navState.isMenuOpen && 'open-menu'
+							}`}
+						/>
+						<div
+							className={`menu-button-bars ${
+								navState.isMenuOpen && 'open-menu'
+							}`}
+						/>
+						<div
+							className={`menu-button-bars ${
+								navState.isMenuOpen && 'open-menu'
+							}`}
+						/>
 					</button>
 				</div>
 				<div
 					className={`nav-border ${
-						(menuIsOpen || searchIsActive) && 'nav-border-fade'
+						(navState.isMenuOpen || navState.searchIsActive) &&
+						'nav-border-fade'
 					}`}
 				/>
 			</nav>
 
 			<nav className='mobileNav' aria-label='Mobile navigation'>
-				{!menuIsOpen && (
+				{!navState.isMenuOpen && (
 					<MobileSearchForm
 						handleSearchClick={handleSearchClick}
-						handleSubmit={handleSubmit}
 						setQuery={setQuery}
 						setIsDateEntered={setIsDateEntered}
 						searchIsActive={searchIsActive}
 					/>
 				)}
-				{!searchIsActive && (
-					<MobileMenu onClick={handleMenuClick} menuIsOpen={menuIsOpen} />
+				{!navState.searchIsActive && (
+					<MobileMenu
+						onClick={toggleMenu}
+						// isMenuOpen={navState.isMenuOpen}
+					/>
 				)}
 			</nav>
 
 			<div
 				className={`page-shadow ${
-					!menuIsOpen || !searchIsActive ? '' : 'fade-in'
+					!navState.isMenuOpen || !navState.searchIsActive ? '' : 'fade-in'
 				}`}
-				onClick={handleMenuClick}
+				onClick={toggleMenu}
 			/>
 		</>
 	);

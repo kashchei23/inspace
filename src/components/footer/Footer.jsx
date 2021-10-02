@@ -1,6 +1,13 @@
 import React from 'react';
 
 const Footer = () => {
+	const socials = {
+		email: 'mailto:kashchei23@gmail.com?subject=FRONT END DEV PORTFOLIO',
+		github: 'https://github.com/kashchei23/inspace',
+		linkedin: 'https://www.linkedin.com/in/danielrbrown/',
+		portfolio: 'https://portfolio-52086.firebaseapp.com/',
+	};
+
 	return (
 		<footer id='contact'>
 			<h1>Footer</h1>
@@ -11,28 +18,16 @@ const Footer = () => {
 			/>
 			<p>Astronomy Picture of the Day</p>
 			<div className='footer-socials'>
-				<a
-					className='footer-socials-icon'
-					href='https://github.com/kashchei23/buzztraq'
-				>
+				<a className='footer-socials-icon' href={socials.email}>
 					<i className='fas fa-envelope fa-3x'></i>
 				</a>
-				<a
-					className='footer-socials-icon'
-					href='https://github.com/kashchei23/buzztraq'
-				>
+				<a className='footer-socials-icon' href={socials.inspace}>
 					<i className='fab fa-github fa-3x' />
 				</a>
-				<a
-					className='footer-socials-icon'
-					href='https://www.linkedin.com/in/danielrbrown/'
-				>
+				<a className='footer-socials-icon' href={socials.linkedin}>
 					<i className='fab fa-linkedin fa-3x' />
 				</a>
-				<a
-					className='footer-socials-icon'
-					href='https://portfolio-52086.firebaseapp.com/'
-				>
+				<a className='footer-socials-icon' href={socials.portfolio}>
 					<i className='fas fa-briefcase fa-3x' />
 				</a>
 			</div>

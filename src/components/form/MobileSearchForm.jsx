@@ -1,12 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { NasaDataContext } from '../../context/NasaContext';
 
-const MobileSearchForm = ({
-	setQuery,
-	setIsDateEntered,
-	searchIsActive,
-	handleSearchClick,
-}) => {
+const MobileSearchForm = () => {
+	const { navState, queryState } = useContext(NasaDataContext);
+
 	const DATE_PATTERN =
 		'(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))';
 
@@ -18,23 +16,25 @@ const MobileSearchForm = ({
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		setQuery({
+		queryState.setQuery({
 			fromDate: inputFromRef.current.value,
 			toDate: inputToRef.current.value,
 		});
 
-		setIsDateEntered(true);
+		queryState.setIsDateEntered(true);
 
-		handleSearchClick();
+		navState.setSearchIsActive((prevSearchIsActive) => !prevSearchIsActive);
 
-		history.push('/list');
+		navState.setIsMenuOpen(false);
+
+		history.push('/picture-list');
 
 		inputFromRef.current.value = '';
 		inputToRef.current.value = '';
 	};
 	return (
 		<>
-			<div className={`search-menu ${searchIsActive && 'show'}`}>
+			<div className={`search-menu ${navState.searchIsActive && 'show'}`}>
 				<p>Enter your search dates</p>
 				<form onSubmit={handleSubmit}>
 					<div className='formInputs'>

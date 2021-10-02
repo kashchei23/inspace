@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { NasaDataContext } from '../dataContextWrapper/NasaContext';
+import { NasaDataContext } from '../../context/NasaContext';
 
 const PictureOfTheDay = ({ endpoint, onClick }) => {
 	const nasaData = useContext(NasaDataContext);

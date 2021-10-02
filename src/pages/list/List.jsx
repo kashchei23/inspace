@@ -1,32 +1,33 @@
 import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { NasaDataContext } from '../dataContextWrapper/NasaContext';
+import { NasaDataContext } from '../../context/NasaContext';
 
 import './List.scss';
 
-const List = ({ handleClick }) => {
+const List = ({ getEndpoint }) => {
 	// const displayedRef = useRef(null);
-	const nasaData = useContext(NasaDataContext);
+	const { fetchedData } = useContext(NasaDataContext);
 	useEffect(() => {
 		// if (displayedRef.current) {
 		// 	displayedRef.current.setAttribute('class', 'nasa-data');
 		// }
-	}, [nasaData]);
+		console.log(fetchedData);
+	}, [fetchedData]);
 	return (
 		<>
 			<p>List component</p>
-			{nasaData ? (
+			{fetchedData ? (
 				<div className='list'>
-					{nasaData.date}
-					{nasaData.map((data) => {
+					{fetchedData.date}
+					{fetchedData.map((data) => {
 						return (
 							<div key={data.date}>
 								{data.date}
 								<Link
-									to={`/list/potd/${data.date}`}
+									to={`/picture-of-the-day/${data.date}`}
 									className='nasa-data-title'
 									name={data.date}
-									onClick={handleClick}
+									onClick={getEndpoint}
 								>
 									{data.title}
 								</Link>
