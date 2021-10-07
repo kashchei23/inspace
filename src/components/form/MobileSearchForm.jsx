@@ -34,7 +34,10 @@ const MobileSearchForm = () => {
 	};
 	return (
 		<>
-			<div className={`search-menu ${navState.searchIsActive && 'show'}`}>
+			<div
+				className={`search-menu ${navState.searchIsActive && 'show'}`}
+				data-test-id='data-test-form'
+			>
 				<p>Enter your search dates</p>
 				<form onSubmit={handleSubmit}>
 					<div className='formInputs'>

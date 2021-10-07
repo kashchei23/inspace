@@ -9,7 +9,7 @@ const Footer = () => {
 	};
 
 	return (
-		<footer id='contact'>
+		<footer data-testid='data-test-footer'>
 			<h1>Footer</h1>
 			<img
 				src='https://res.cloudinary.com/obkidz/image/upload/v1633024282/inspace/inspace-off-white_m0qqfo.png'

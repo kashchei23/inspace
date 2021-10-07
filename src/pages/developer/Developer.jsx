@@ -15,7 +15,10 @@ const Developer = () => {
 				ultricies velit vel lorem ornare euismod. Pellentesque rhoncus nunc quis
 				pretium sodales.
 			</p>
-			<a href='' className='styled-link'>
+			<a
+				href='mailto:kashchei23@gmail.com?subject=InSpace App'
+				className='styled-link'
+			>
 				Let's work together
 			</a>
 		</>

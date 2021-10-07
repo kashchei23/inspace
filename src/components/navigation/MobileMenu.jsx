@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { MobileNavLink } from './MobileNavLink';
+import MobileNavLink from './MobileNavLink';
 import { NasaDataContext } from '../../context/NasaContext';
 
 const MobileMenu = () => {
@@ -11,7 +11,7 @@ const MobileMenu = () => {
 					<MobileNavLink to='/' text='Home' />
 					<MobileNavLink to='/about' text='About' />
 					<MobileNavLink to='/developer' text='Developer' />
-					<MobileNavLink to='#contact' text='Contact' />
+					<MobileNavLink to='/contact' text='Contact' />
 				</div>
 				<div className='nav-border' />
 			</div>

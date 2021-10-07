@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Navbar.scss';
@@ -7,10 +7,8 @@ import MobileSearchForm from '../form/MobileSearchForm';
 // import DesktopMenu from './DesktopMenu';
 import { NasaDataContext } from '../../context/NasaContext';
 
-const NavBar = ({ setQuery, setIsDateEntered }) => {
+const NavBar = () => {
 	const { navState } = useContext(NasaDataContext);
-
-	const [searchIsActive, setSearchIsActive] = useState(false);
 
 	const handleSearchClick = () => {
 		navState.setSearchIsActive((prevSearchIsActive) => !prevSearchIsActive);
@@ -86,9 +84,7 @@ const NavBar = ({ setQuery, setIsDateEntered }) => {
 				{!navState.isMenuOpen && (
 					<MobileSearchForm
 						handleSearchClick={handleSearchClick}
-						setQuery={setQuery}
-						setIsDateEntered={setIsDateEntered}
-						searchIsActive={searchIsActive}
+						searchIsActive={navState.searchIsActive}
 					/>
 				)}
 				{!navState.searchIsActive && (
