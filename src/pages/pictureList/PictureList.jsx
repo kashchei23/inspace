@@ -1,18 +1,18 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { NasaDataContext } from '../../context/NasaContext';
 
-import './List.scss';
+import './PictureList.scss';
 
-const List = ({ getEndpoint }) => {
-	// const displayedRef = useRef(null);
-	const { fetchedData } = useContext(NasaDataContext);
-	useEffect(() => {
-		// if (displayedRef.current) {
-		// 	displayedRef.current.setAttribute('class', 'nasa-data');
-		// }
-		console.log(fetchedData);
-	}, [fetchedData]);
+const PictureList = () => {
+	const { fetchedData, endpointState } = useContext(NasaDataContext);
+
+	const getEndpoint = (e) => {
+		const endpoint = e.target.name;
+		endpointState.setEndpoint(endpoint);
+		return endpoint;
+	};
+
 	return (
 		<>
 			<p>List component</p>
@@ -45,4 +45,4 @@ const List = ({ getEndpoint }) => {
 	);
 };
 
-export default List;
+export default PictureList;
