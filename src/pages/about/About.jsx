@@ -10,27 +10,26 @@ const About = () => {
 
 	let timeoutId;
 
-	const checkClick = () => {
-		timeoutId = setTimeout(() => {
-			setIsVisible(true);
-		}, 2000);
+	const toggleTooltip = () => {
+		if (navState.searchIsActive || navState.isMenuOpen) {
+			clearTimeout(timeoutId);
+			setIsVisible(false);
+		} else {
+			timeoutId = setTimeout(() => {
+				setIsVisible(true);
+			}, 2000);
+		}
 	};
 
-	const handleClick = (e) => {
+	const handleClick = () => {
 		navState.setSearchIsActive(true);
 		navState.setIsMenuOpen(false);
-		console.log(navState.searchIsActive, navState.isMenuOpen);
 		clearTimeout(timeoutId);
 		setIsVisible(false);
 	};
 
 	useEffect(() => {
-		// if (navState.searchIsActive || navState.isMenuOpen) {
-		// 	console.log(isVisible);
-		// 	clearTimeout(timeoutId);
-		// 	setIsVisible(false);
-		// }
-		checkClick();
+		toggleTooltip();
 		return () => {
 			clearTimeout(timeoutId);
 		};
