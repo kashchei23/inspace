@@ -1,7 +1,9 @@
 import React, { useRef, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { NasaDataContext } from '../../context/NasaContext';
+import Button from '../../components/button/Button';
 
+import './MobileSearchForm.scss';
 const MobileSearchForm = () => {
 	const { navState, queryState } = useContext(NasaDataContext);
 
@@ -32,16 +34,22 @@ const MobileSearchForm = () => {
 		inputFromRef.current.value = '';
 		inputToRef.current.value = '';
 	};
+
+	const toggleSearchForm = () => {
+		navState.setSearchIsActive((prevSearchIsActive) => !prevSearchIsActive);
+		navState.setIsMenuOpen(false);
+	};
+
 	return (
 		<>
 			<div
-				className={`search-menu ${navState.searchIsActive && 'show'}`}
+				className={`search-menu ${navState.searchIsActive && 'show-nav-item'}`}
 				data-test-id='data-test-form'
 			>
-				<p>Enter your search dates</p>
+				<h3>Enter your search dates</h3>
 				<form onSubmit={handleSubmit}>
-					<div className='formInputs'>
-						<label htmlFor='fromDate'>Start date</label>
+					<div className='form-input'>
+						<label htmlFor='fromDate'>Start date: </label>
 						<input
 							type='text'
 							name='fromDate'
@@ -52,8 +60,8 @@ const MobileSearchForm = () => {
 							autoComplete='on'
 						/>
 					</div>
-					<div className='formInputs'>
-						<label htmlFor='toDate'>End date</label>
+					<div className='form-input'>
+						<label htmlFor='toDate'>End date: </label>
 						<input
 							type='text'
 							name='toDate'
@@ -64,7 +72,13 @@ const MobileSearchForm = () => {
 							autoComplete='on'
 						/>
 					</div>
-					<button type='submit'>Search</button>
+					<Button type='submit' className='button' innerText='Search' />
+					<Button
+						type='button'
+						className='close-search-button'
+						innerText='Close search'
+						onClick={toggleSearchForm}
+					/>
 				</form>
 				<div className='nav-border' />
 			</div>

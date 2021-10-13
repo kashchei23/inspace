@@ -1,0 +1,25 @@
+@use '../../styles/_colors.scss' as colors;
+@use '../../styles/_breakpoints.scss' as breakpoints;
+@use '../../styles/_mixins.scss' as mixins;
+
+.text-wrapper {
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+.text-shadow {
+	box-shadow: 0 -30px 30px colors.$off-black inset;
+	width: 100vw;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: -24px;
+	z-index: 1;
+}
+.nasa-data-text {
+	line-height: 1.4;
+}
+
+.home-cta-button {
+	margin: 100px auto;
+}

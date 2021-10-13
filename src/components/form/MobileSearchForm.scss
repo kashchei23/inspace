@@ -1,0 +1,18 @@
+@use '../../styles/_colors.scss' as colors;
+@use '../../styles/_breakpoints.scss' as breakpoints;
+@use '../../styles/_mixins.scss' as mixins;
+
+.search-menu {
+	text-align: center;
+}
+.form-input {
+	display: inline-block;
+	margin: 24px 8px;
+	input {
+		width: 125px;
+		outline: none;
+		border: none;
+		border-bottom: 2px solid colors.$off-white;
+		background-color: transparent;
+	}
+}
