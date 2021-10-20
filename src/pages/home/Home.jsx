@@ -3,9 +3,8 @@ import { getCurrentDate } from '../../helpers/getCurrentDate';
 import { useFetchCurrent } from '../../api/useFetchCurrent';
 import { NasaDataContext } from '../../context/NasaContext';
 
-import './Home.scss';
+import '../../styles/feature-picture.scss';
 import Button from '../../components/button/Button';
-
 const Home = () => {
 	const { navState } = useContext(NasaDataContext);
 
@@ -14,9 +13,9 @@ const Home = () => {
 	const currentDate = getCurrentDate();
 
 	const queryRef = useRef('');
-	const toggleAccordion = (e) => {
+
+	const toggleAccordion = () => {
 		setIsOpen((prevIsOpen) => !prevIsOpen);
-		console.log('click', isOpen);
 	};
 
 	queryRef.current = { fromDate: currentDate, toDate: currentDate };

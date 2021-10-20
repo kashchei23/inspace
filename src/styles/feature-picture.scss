@@ -1,6 +1,6 @@
-@use '../../styles/_colors.scss' as colors;
-@use '../../styles/_breakpoints.scss' as breakpoints;
-@use '../../styles/_mixins.scss' as mixins;
+@use './_colors.scss' as colors;
+@use './_breakpoints.scss' as breakpoints;
+@use './_mixins.scss' as mixins;
 
 .text-wrapper {
 	position: relative;
@@ -20,6 +20,11 @@
 	line-height: 1.4;
 }
 
-.home-cta-button {
-	margin: 100px auto;
+.navigate-back-icon {
+	position: absolute;
+	top: 105px;
+	left: 10px;
+	width: 45px;
+	height: auto;
+	padding: 0 15px;
 }
