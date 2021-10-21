@@ -1,19 +1,39 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { NasaDataContext } from '../../context/NasaContext';
+
+import { AppContext } from '../../context/AppContext';
 import Button from '../../components/button/Button';
-
+import {
+	formatDate,
+	// calculateMaxOrMIN_DATE,
+	getRangeDate,
+} from '../../helpers/dateRangeAndFormat';
 import './MobileSearchForm.scss';
+
 const MobileSearchForm = () => {
-	const { navState, queryState } = useContext(NasaDataContext);
-
-	const DATE_PATTERN =
-		'(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))';
-
+	const { navState, queryState } = useContext(AppContext);
 	const inputFromRef = useRef(null);
 	const inputToRef = useRef(null);
-
 	const history = useHistory();
+	const MIN_DATE = '1995-06-16';
+	const MAX_DATE = formatDate(new Date());
+	const [maxRangeDate, setMaxRangeDate] = useState('');
+	const [minRangeDate, setMinRangeDate] = useState('');
+
+	const resetAndCloseForm = () => {
+		navState.setSearchIsActive(false);
+		inputFromRef.current.value = '';
+		inputToRef.current.value = '';
+		inputFromRef.current.setAttribute('class', 'text-color-default');
+		inputToRef.current.setAttribute('class', 'text-color-default');
+	};
+
+	const handleDateInput = (e) => {
+		if (e.target.value !== '')
+			e.target.setAttribute('class', 'text-color-blur');
+		setMaxRangeDate(getRangeDate(e.target));
+		setMinRangeDate(e.target.value);
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -25,64 +45,58 @@ const MobileSearchForm = () => {
 
 		queryState.setIsDateEntered(true);
 
-		navState.setSearchIsActive((prevSearchIsActive) => !prevSearchIsActive);
+		history.push('/gallery');
 
-		navState.setIsMenuOpen(false);
-
-		history.push('/picture-list');
-
-		inputFromRef.current.value = '';
-		inputToRef.current.value = '';
+		resetAndCloseForm();
 	};
 
-	const toggleSearchForm = () => {
-		navState.setSearchIsActive((prevSearchIsActive) => !prevSearchIsActive);
-		navState.setIsMenuOpen(false);
-	};
+	useEffect(() => {
+		setMaxRangeDate(getRangeDate(MAX_DATE));
+	}, []);
 
 	return (
-		<>
-			<div
-				className={`search-menu ${navState.searchIsActive && 'show-nav-item'}`}
-				data-test-id='data-test-form'
-			>
-				<h3>Enter your search dates</h3>
-				<form onSubmit={handleSubmit}>
-					<div className='form-input'>
-						<label htmlFor='fromDate'>Start date: </label>
-						<input
-							type='text'
-							name='fromDate'
-							placeholder='YYYY-MM-DD'
-							required
-							pattern={DATE_PATTERN}
-							ref={inputFromRef}
-							autoComplete='on'
-						/>
-					</div>
-					<div className='form-input'>
-						<label htmlFor='toDate'>End date: </label>
-						<input
-							type='text'
-							name='toDate'
-							placeholder='YYYY-MM-DD'
-							required
-							pattern={DATE_PATTERN}
-							ref={inputToRef}
-							autoComplete='on'
-						/>
-					</div>
-					<Button type='submit' className='button' innerText='Search' />
-					<Button
-						type='button'
-						className='close-search-button'
-						innerText='Close search'
-						onClick={toggleSearchForm}
+		<div
+			className={`search-menu ${navState.searchIsActive && 'show-search-menu'}`}
+			data-test-id='data-test-form'
+		>
+			<h2>Enter your search dates</h2>
+			<form onSubmit={handleSubmit}>
+				<div className='form-input'>
+					<label htmlFor='fromDate'>Start date: </label>
+					<input
+						type='date'
+						name='fromDate'
+						required
+						ref={inputFromRef}
+						onBlur={handleDateInput}
+						className='text-color-default'
+						min={MIN_DATE}
+						max={MAX_DATE}
 					/>
-				</form>
-				<div className='nav-border' />
-			</div>
-		</>
+				</div>
+				<div className='form-input'>
+					<label htmlFor='toDate'>End date: </label>
+					<input
+						type='date'
+						name='toDate'
+						required
+						ref={inputToRef}
+						onBlur={handleDateInput}
+						className='text-color-default'
+						min={minRangeDate}
+						max={maxRangeDate}
+					/>
+				</div>
+				<Button type='submit' className='button' innerText='Search' />
+				<Button
+					type='button'
+					className='close-search-button'
+					innerText='Close search'
+					onClick={resetAndCloseForm}
+				/>
+			</form>
+			<div className='nav-border' />
+		</div>
 	);
 };
 
