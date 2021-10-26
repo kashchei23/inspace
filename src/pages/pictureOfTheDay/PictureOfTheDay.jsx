@@ -1,58 +1,74 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 
-import { NasaDataContext } from '../../context/NasaContext';
+import { AppContext } from '../../context/AppContext';
 import Button from '../../components/button/Button';
 import '../../styles/feature-picture.scss';
-const PictureOfTheDay = ({ onClick }) => {
-	const { fetchedData, endpointState, navState } = useContext(NasaDataContext);
+const PictureOfTheDay = () => {
+	const { nasaData, navState } = useContext(AppContext);
 
-	const [chosenImage, setChosenImage] = useState('');
+	const potdRef = useRef(null);
 
-	const [isOpen, setIsOpen] = useState(false);
+	const [isAccordionOpen, setIsAccordionOpen] = useState(false);
 
 	const toggleAccordion = () => {
-		setIsOpen((prevIsOpen) => !prevIsOpen);
+		setIsAccordionOpen((prevIsAccordionOpen) => !prevIsAccordionOpen);
 	};
+
+	const param = useParams();
+	const selectedPicture = nasaData.find((e) => e.date === param.date);
+
 	useEffect(() => {
-		for (let i = 0; i < fetchedData.length; i++) {
-			const entry = fetchedData[i];
-			if (endpointState.endpoint === entry.date) {
-				setChosenImage(entry);
-			}
-		}
-	}, [fetchedData, endpointState.endpoint]);
+		navState.setIsPictureMounted(true);
+		return () => {
+			navState.setIsPictureMounted(false);
+		};
+	}, []);
 
 	return (
-		<div className='page'>
-			<Link to='/picture-list' onClick={onClick} className='navigate-back-icon'>
-				<img
-					src='https://res.cloudinary.com/obkidz/image/upload/v1633031774/icons/chevron-off-white_f9t997.png'
-					alt='navigate back chevron'
-				/>
-			</Link>
-			{fetchedData && (
+		<div className='page' ref={potdRef}>
+			{/* <h1>Picture of the Day</h1> */}
+			{nasaData && (
 				<>
-					<h2 className='nasa-data-title'>{chosenImage.title}</h2>
+					<h1 className='nasa-data-title'>{selectedPicture.title}</h1>
 					<figure>
-						<img
-							src={chosenImage.url}
-							className='nasaImg-full'
-							alt={chosenImage.title}
-						/>
-						<span className='date'>{chosenImage.date}</span>
+						{selectedPicture.media_type === 'image' ? (
+							<img
+								src={selectedPicture.url}
+								alt={selectedPicture.title}
+								className='nasaImg-full'
+							/>
+						) : (
+							selectedPicture.media_type === 'video' && (
+								<iframe
+									width='420'
+									height='315'
+									src={selectedPicture.url}
+									title={selectedPicture.title}
+								/>
+							)
+						)}
+						<span className='date'>{selectedPicture.date}</span>
 						<span className='copyright-text'>
-							Copyright: {chosenImage.copyright}
+							Copyright: {selectedPicture.copyright}
 						</span>
 					</figure>
-					<div className={`text-wrapper ${isOpen ? 'show-text' : 'hide-text'}`}>
-						<div className={`text-shadow ${isOpen ? 'hide' : 'show'}`} />
-						<p className='nasa-data-text'>{chosenImage.explanation}</p>
+					<div
+						className={`text-wrapper ${
+							isAccordionOpen ? 'show-text' : 'hide-text'
+						}`}
+					>
+						<div
+							className={`text-shadow ${isAccordionOpen ? 'hide' : 'show'}`}
+						/>
+						<p className='nasa-data-text'>{selectedPicture.explanation}</p>
 					</div>
 					<Button
 						type='button'
-						className={`button read-button ${isOpen && 'read-button-less'}`}
-						innerText={isOpen ? 'Read less' : 'Read more'}
+						className={`button read-button ${
+							isAccordionOpen && 'read-button-less'
+						}`}
+						innerText={isAccordionOpen ? 'Read less' : 'Read more'}
 						onClick={toggleAccordion}
 					/>
 					<div
