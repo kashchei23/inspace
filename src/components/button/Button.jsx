@@ -4,12 +4,7 @@ import './Button.scss';
 
 const Button = ({ type, className, innerText, onClick }) => {
 	return (
-		<button
-			type={type}
-			className={className}
-			onClick={onClick}
-			// data-clicked={clicked}
-		>
+		<button type={type} className={className} onClick={onClick}>
 			{innerText}
 		</button>
 	);
