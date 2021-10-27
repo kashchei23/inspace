@@ -1,0 +1,26 @@
+@use '../../styles/_colors.scss' as colors;
+@use '../../styles/_breakpoints' as breakpoints;
+
+.desktop-menu {
+	display: none;
+	@media (min-width: breakpoints.$breakpoint-tablet) {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 350px;
+		position: absolute;
+		right: 24px;
+		a {
+			font-size: 16px;
+			text-decoration: none;
+			letter-spacing: 1px;
+			color: colors.$off-white;
+			position: relative;
+			transition: all 0.1s ease-in;
+			&:hover,
+			&:active {
+				color: colors.$yellow;
+			}
+		}
+	}
+}

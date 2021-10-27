@@ -1,17 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import './DesktopMenu.scss';
 const DesktopMenu = () => {
+	const scrollToTop = () => {
+		window.scrollTo({ top: 0 });
+	};
+
 	return (
 		<div className='desktop-menu'>
-			<div className='desktop-menu-links'>
-				<Link to='/'>Home</Link>
-				<a href='/#features'>Features</a>
-				<Link to='/signup' className='styled-link' id='styled-link-desktop'>
-					SIGN UP
-				</Link>
-			</div>
-			<div className='nav-border' />
+			<Link to='/' onClick={scrollToTop}>
+				Home
+			</Link>
+			<Link to='/about' onClick={scrollToTop}>
+				About
+			</Link>
+			<Link to='/developer' onClick={scrollToTop}>
+				Developer
+			</Link>
+			<Link to='/contact' onClick={scrollToTop}>
+				Contact
+			</Link>
 		</div>
 	);
 };

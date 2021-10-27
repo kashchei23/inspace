@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import MobileNavLink from './MobileNavLink';
-import { NasaDataContext } from '../../context/NasaContext';
+import { AppContext } from '../../context/AppContext';
 
 const MobileMenu = () => {
-	const { navState } = useContext(NasaDataContext);
+	const { navState } = useContext(AppContext);
 	return (
 		<>
-			<div className={`mobile-menu ${navState.isMenuOpen && 'show'}`}>
+			<div className={`mobile-menu ${navState.isMenuOpen && 'show-nav-item'}`}>
 				<div className='mobile-menu-links'>
 					<MobileNavLink to='/' text='Home' />
 					<MobileNavLink to='/about' text='About' />
