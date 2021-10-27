@@ -6,7 +6,10 @@ export const useFetch = (query, isDateEntered, setIsDateEntered) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
 	const [nasaData, setNasaData] = useState(
-		JSON.parse(localStorage.getItem('storedObj'))
+		JSON.parse(localStorage.getItem('galleryQuery'))
+	);
+	const [currentNasaPicture, setCurrentNasaPicture] = useState(
+		JSON.parse(localStorage.getItem('currentQuery'))
 	);
 
 	useEffect(() => {
@@ -17,13 +20,16 @@ export const useFetch = (query, isDateEntered, setIsDateEntered) => {
 				fromDate: query.fromDate,
 				toDate: query.toDate,
 			};
-			setNasaData(res.data);
-			setIsLoading(false);
 			if (query.name === 'galleryQuery') {
-				localStorage.setItem('storedObj', JSON.stringify(res.data));
+				localStorage.setItem('galleryQuery', JSON.stringify(res.data));
+				setNasaData(res.data);
+			} else if (query.name === 'currentQuery') {
+				localStorage.setItem('currentQuery', JSON.stringify(res.data));
+				setCurrentNasaPicture(JSON.parse(localStorage.getItem('currentQuery')));
 			}
+			setIsLoading(false);
 		};
-		console.log();
+
 		const handleErrors = (err) => {
 			if (err.response) {
 				setError('Sorry, no data at this URL');
@@ -35,13 +41,12 @@ export const useFetch = (query, isDateEntered, setIsDateEntered) => {
 		};
 		const fetchData = async () => {
 			setIsLoading(true);
-			//TODO Check media type of response data.  if video, show error msg on thumbnail
 			if (
-				cache[query] &&
-				cache[query].fromDate === query.fromDate &&
-				cache[query].toDate === query.toDate
+				cache[query.name] &&
+				cache[query.name].fromDate === query.fromDate &&
+				cache[query.name].toDate === query.toDate
 			) {
-				setNasaData(cache[query].query);
+				setNasaData(cache[query.name].query);
 				setIsLoading(false);
 			} else {
 				const response = await axios
@@ -58,5 +63,5 @@ export const useFetch = (query, isDateEntered, setIsDateEntered) => {
 			setIsDateEntered(false);
 		}
 	}, [query, isDateEntered, setIsDateEntered]);
-	return { nasaData, isLoading, error };
+	return { nasaData, currentNasaPicture, isLoading, error };
 };
