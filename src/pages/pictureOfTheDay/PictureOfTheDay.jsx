@@ -1,42 +1,40 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { AppContext } from '../../context/AppContext';
 import Button from '../../components/button/Button';
-import '../../styles/feature-picture.scss';
+import './PictureOfTheDay.scss';
+import '../../styles/_utilities.scss';
+
 const PictureOfTheDay = () => {
 	const { nasaData, navState } = useContext(AppContext);
 
-	const potdRef = useRef(null);
-
 	const [isAccordionOpen, setIsAccordionOpen] = useState(false);
-
-	const toggleAccordion = () => {
-		setIsAccordionOpen((prevIsAccordionOpen) => !prevIsAccordionOpen);
+	const openAccordion = () => {
+		setIsAccordionOpen(true);
 	};
 
 	const param = useParams();
 	const selectedPicture = nasaData.find((e) => e.date === param.date);
 
 	useEffect(() => {
-		navState.setIsPictureMounted(true);
+		navState.setIsBackButtonVisible(true);
 		return () => {
-			navState.setIsPictureMounted(false);
+			navState.setIsBackButtonVisible(false);
 		};
 	}, []);
 
 	return (
-		<div className='page' ref={potdRef}>
-			{/* <h1>Picture of the Day</h1> */}
+		<div className='page'>
 			{nasaData && (
 				<>
-					<h1 className='nasa-data-title'>{selectedPicture.title}</h1>
+					<h1 className='picture-title'>{selectedPicture.title}</h1>
 					<figure>
 						{selectedPicture.media_type === 'image' ? (
 							<img
 								src={selectedPicture.url}
 								alt={selectedPicture.title}
-								className='nasaImg-full'
+								className='picture-image'
 							/>
 						) : (
 							selectedPicture.media_type === 'video' && (
@@ -45,35 +43,44 @@ const PictureOfTheDay = () => {
 									height='315'
 									src={selectedPicture.url}
 									title={selectedPicture.title}
+									className='picture-video'
 								/>
 							)
 						)}
-						<span className='date'>{selectedPicture.date}</span>
-						<span className='copyright-text'>
-							Copyright: {selectedPicture.copyright}
-						</span>
+						<figcaption className='animate-content-text'>
+							<span>{selectedPicture.date}</span>
+
+							<span>
+								Copyright:
+								{selectedPicture.copyright ? selectedPicture.copyright : 'N/A'}
+							</span>
+						</figcaption>
 					</figure>
 					<div
-						className={`text-wrapper ${
-							isAccordionOpen ? 'show-text' : 'hide-text'
+						className={`expandable-text-wrapper ${
+							isAccordionOpen ? 'expand-text' : 'contract-text'
 						}`}
 					>
 						<div
-							className={`text-shadow ${isAccordionOpen ? 'hide' : 'show'}`}
+							className={`expandable-text-wrapper-shadow ${
+								isAccordionOpen ? 'hide' : 'show'
+							}`}
 						/>
-						<p className='nasa-data-text'>{selectedPicture.explanation}</p>
+						<p className='animate-content-text'>
+							{selectedPicture.explanation}
+						</p>
 					</div>
 					<Button
 						type='button'
-						className={`button read-button ${
-							isAccordionOpen && 'read-button-less'
+						className={`button read-more-button ${
+							isAccordionOpen ? 'hide' : 'animate-fadeIn'
 						}`}
-						innerText={isAccordionOpen ? 'Read less' : 'Read more'}
-						onClick={toggleAccordion}
+						innerText='Read more'
+						onClick={openAccordion}
 					/>
 					<div
 						className={`brightness-shadow ${
-							navState.isShadowOn && 'fade-in slow-fade'
+							navState.isShadowOn && 'brightness-shadow-show slow-fade'
 						}`}
 					/>
 				</>

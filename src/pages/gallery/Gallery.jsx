@@ -8,9 +8,10 @@ import './Gallery.scss';
 const Gallery = () => {
 	const { navState, nasaData, isLoading, error } = useContext(AppContext);
 	const [loadingContent, setLoadingContent] = useState(false);
+	const [isMounted, setIsMounted] = useState(false);
 
-	const handleClick = (e) => {
-		navState.setIsPictureMounted(true);
+	const handleClick = () => {
+		navState.setIsBackButtonVisible(true);
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
 
@@ -19,24 +20,40 @@ const Gallery = () => {
 			setLoadingContent(true);
 			setTimeout(() => {
 				setLoadingContent(false);
-			}, 1000);
+			}, 400);
 		}
 	}, [isLoading, nasaData]);
 
+	useEffect(() => {
+		setIsMounted(true);
+		return () => {
+			setIsMounted(false);
+		};
+	}, []);
+
 	return (
 		<div className='page'>
+			<div className='gallery-background' />
 			{error ? (
 				<p className=''>{error}</p>
 			) : (
 				<>
 					<header className='page-header'>
 						<h1 className='page-title'>Gallery</h1>
-						<p>
-							{`${nasaData[0].date}`}&nbsp; &#8212; &nbsp;
-							{`${nasaData[nasaData.length - 1].date}`}
-						</p>
+						{nasaData && (
+							<h4>
+								{`${nasaData[0].date}`}&nbsp; &#8212; &nbsp;
+								{`${nasaData[nasaData.length - 1].date}`}
+							</h4>
+						)}
 					</header>
-					<div className='gallery'>
+					<div
+						className={`gallery ${
+							isMounted || !loadingContent
+								? 'fade-in-gallery'
+								: 'fade-out-gallery'
+						}`}
+					>
 						{nasaData?.map((data) => {
 							return (
 								<div key={data.date}>
@@ -67,7 +84,7 @@ const Gallery = () => {
 												)}
 												<div className='gallery-img-text'>
 													<p className='gallery-img-date'>{data.date}</p>
-													<p className='gallery-img-title'>{data.title}</p>
+													<h4 className='gallery-img-title'>{data.title}</h4>
 												</div>
 												<div className='gallery-card-shadow'></div>
 											</div>
