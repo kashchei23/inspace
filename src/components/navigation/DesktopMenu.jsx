@@ -8,20 +8,17 @@ const DesktopMenu = () => {
 	};
 
 	return (
-		<div className='desktop-menu'>
+		<nav className='desktop-menu'>
 			<Link to='/' onClick={scrollToTop}>
-				Home
+				HOME
 			</Link>
 			<Link to='/about' onClick={scrollToTop}>
-				About
+				ABOUT
 			</Link>
 			<Link to='/developer' onClick={scrollToTop}>
-				Developer
+				DEVELOPER
 			</Link>
-			<Link to='/contact' onClick={scrollToTop}>
-				Contact
-			</Link>
-		</div>
+		</nav>
 	);
 };
 

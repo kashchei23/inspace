@@ -2,19 +2,22 @@ import React, { useContext } from 'react';
 import MobileNavLink from './MobileNavLink';
 import { AppContext } from '../../context/AppContext';
 
+import './MobileMenu.scss';
+
 const MobileMenu = () => {
 	const { navState } = useContext(AppContext);
 	return (
 		<>
-			<div className={`mobile-menu ${navState.isMenuOpen && 'show-nav-item'}`}>
-				<div className='mobile-menu-links'>
-					<MobileNavLink to='/' text='Home' />
-					<MobileNavLink to='/about' text='About' />
-					<MobileNavLink to='/developer' text='Developer' />
-					<MobileNavLink to='/contact' text='Contact' />
-				</div>
-				<div className='nav-border' />
-			</div>
+			<nav
+				className={`mobile-menu ${navState.isMenuOpen && 'mobile-menu-open'}`}
+			>
+				<nav className='mobile-menu-links'>
+					<MobileNavLink to='/' text='HOME' />
+					<MobileNavLink to='/about' text='ABOUT' />
+					<MobileNavLink to='/developer' text='DEVELOPER' />
+				</nav>
+				<div className='mobile-menu-border' />
+			</nav>
 		</>
 	);
 };

@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { NasaDataContext } from '../../context/NasaContext';
+import { AppContext } from '../../context/AppContext';
 
 const MobileNavLink = ({ to, text }) => {
-	const { navState } = useContext(NasaDataContext);
+	const { navState } = useContext(AppContext);
 
 	const toggleMenu = () => {
 		navState.setSearchIsActive(false);
 		navState.setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
+		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
 
 	return (

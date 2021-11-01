@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import './Navbar.scss';
+import './TopNav.scss';
 import MobileMenu from './MobileMenu';
 import DesktopMenu from './DesktopMenu';
 import { AppContext } from '../../context/AppContext';
 
-const NavBar = () => {
+const TopNav = () => {
 	const { navState, queryState } = useContext(AppContext);
 
 	const menuBars = ['bar1', 'bar2', 'bar3', 'bar4'];
@@ -23,18 +23,18 @@ const NavBar = () => {
 	};
 
 	const hideBackButtonAndNavigateBack = () => {
-		navState.setIsPictureMounted(false);
-		window.scrollTo({ top: 0, behavior: 'smooth' });
+		navState.setIsBackButtonVisible(false);
+		window.scrollTo({ top: 0 });
 	};
 
 	return (
 		<>
-			<nav className='navBar'>
+			<nav className='topNav'>
 				<Link
 					to={`/gallery/start_date=${queryState.fromDate}&end_date=${queryState.toDate}`}
 					onClick={hideBackButtonAndNavigateBack}
-					className={` navBar-back-icon ${
-						navState.isPictureMounted && 'slide-animation'
+					className={` topNav-back-icon ${
+						navState.isBackButtonVisible && 'topNav-back-icon-show'
 					}`}
 				>
 					<img
@@ -43,11 +43,10 @@ const NavBar = () => {
 					/>
 				</Link>
 				<Link to='/' onClick={closeSearchAndMenu}>
-					<img
-						src='https://res.cloudinary.com/obkidz/image/upload/v1632785985/inspace/inspace-gradient-white_jzyn7s.png'
-						alt='buzztraq logo'
-						className='navBar-logo'
-					/>
+					<div className='topNav-logo'>
+						<div className='topNav-logo-mark'>In</div>
+						<div className='topNav-logo-text'>Space</div>
+					</div>
 				</Link>
 				<DesktopMenu />
 				<button
@@ -66,17 +65,14 @@ const NavBar = () => {
 					})}
 				</button>
 				<div
-					className={`nav-border ${
-						(navState.isMenuOpen || navState.searchIsActive) &&
-						'nav-border-fade'
+					className={`topNav-border ${
+						navState.isMenuOpen && 'topNav-border-fade'
 					}`}
 				/>
 			</nav>
-			<nav className='mobileNav' aria-label='Mobile navigation'>
-				{!navState.searchIsActive && <MobileMenu />}
-			</nav>
+			{!navState.searchIsActive && <MobileMenu />}
 		</>
 	);
 };
 
-export default NavBar;
+export default TopNav;
