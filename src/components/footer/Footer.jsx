@@ -13,23 +13,44 @@ const Footer = () => {
 
 	return (
 		<footer data-testid='footer' className='footer'>
-			<img
-				src='https://res.cloudinary.com/obkidz/image/upload/v1633024282/inspace/inspace-off-white_m0qqfo.png'
-				alt='InSpace logo off-white'
-				className='footer-logo'
-			/>
-			<p>Astronomy Picture of the Day</p>
+			<div className='footer-logo'>
+				<div className='footer-logo-mark-transparent'>
+					<div className='footer-logo-mark'>In</div>
+				</div>
+				<div className='footer-logo-text'>Space</div>
+			</div>
+			<h4>Astronomy Picture of the Day</h4>
 			<div className='footer-socials'>
-				<a className='footer-socials-icon' href={socials.email}>
+				<a
+					className='footer-socials-icon'
+					target='_blank'
+					rel='noreferrer'
+					href={socials.email}
+				>
 					<i className='fas fa-envelope fa-3x'></i>
 				</a>
-				<a className='footer-socials-icon' href={socials.github}>
+				<a
+					className='footer-socials-icon'
+					target='_blank'
+					rel='noreferrer'
+					href={socials.github}
+				>
 					<i className='fab fa-github fa-3x' />
 				</a>
-				<a className='footer-socials-icon' href={socials.linkedin}>
+				<a
+					className='footer-socials-icon'
+					target='_blank'
+					rel='noreferrer'
+					href={socials.linkedin}
+				>
 					<i className='fab fa-linkedin fa-3x' />
 				</a>
-				<a className='footer-socials-icon' href={socials.portfolio}>
+				<a
+					className='footer-socials-icon'
+					target='_blank'
+					rel='noreferrer'
+					href={socials.portfolio}
+				>
 					<i className='fas fa-briefcase fa-3x' />
 				</a>
 			</div>
