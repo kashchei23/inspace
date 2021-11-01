@@ -1,65 +1,58 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import './About.scss';
 import Button from '../../components/button/Button';
-import { NasaDataContext } from '../../context/NasaContext';
+import { AppContext } from '../../context/AppContext';
 
 const About = () => {
-	const [isVisible, setIsVisible] = useState(false);
-	const { navState } = useContext(NasaDataContext);
-
-	let timeoutId;
-
-	const toggleTooltip = () => {
-		if (navState.searchIsActive || navState.isMenuOpen) {
-			clearTimeout(timeoutId);
-			setIsVisible(false);
-		} else {
-			timeoutId = setTimeout(() => {
-				setIsVisible(true);
-			}, 2000);
-		}
-	};
+	const { navState } = useContext(AppContext);
 
 	const handleClick = () => {
 		navState.setSearchIsActive(true);
 		navState.setIsMenuOpen(false);
-		clearTimeout(timeoutId);
-		setIsVisible(false);
 	};
 
-	useEffect(() => {
-		toggleTooltip();
-		return () => {
-			clearTimeout(timeoutId);
-		};
-	}, []);
-
 	return (
-		<div className='about page'>
-			<div className={`tooltip ${isVisible && 'fade-in'}`}>
-				<i className='fas fa-long-arrow-alt-up fa-2x tooltip-arrow' />
-				<Button
-					className='button tooltip-button'
-					innerText='Begin your search here'
-					onClick={handleClick}
-					type='button'
-				/>
-				<div className='tooltip-page-shadow' />
-			</div>
+		<div className='about'>
 			<h1 data-testid='about'>About</h1>
 			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque leo
-				ligula, semper id lorem sed, ullamcorper vehicula ante. Praesent
-				ultricies velit vel lorem ornare euismod. Pellentesque rhoncus nunc quis
-				pretium sodales.
+				InSpace brings the wonderous imagery from the NASA Astronomy Picture of
+				the Day API to your browser for a user friendly experience. Each day, a
+				new image or video with a brief description is featured and displayed on
+				the home page. For past pictures dating as far back as June 16, 1995,
+				simply use the search feature and a gallery will populate with your
+				chosen images.
 			</p>
 			<ul>
-				<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
 				<li>
-					Quisque Leo ligula, semper id lorem sed, ullamcorper vehicula ante.
+					This application was developed using React, Javascript, HTML, and
+					SCSS.
 				</li>
-				<li>Praesent ultricies velit vel lorem ornare euismod. </li>
+				<li>
+					Visit the{' '}
+					<a
+						href='https://github.com/kashchei23/inspace'
+						target='_blank'
+						rel='noreferrer'
+						className='external-link '
+					>
+						{' '}
+						GitHub repository
+					</a>{' '}
+					for information on the development of this app.
+				</li>
+				<li>
+					You can find out more about the{' '}
+					<a
+						href='https://api.nasa.gov/'
+						target='_blank'
+						rel='noreferrer'
+						className='external-link'
+					>
+						NASA API portal
+					</a>{' '}
+					here.
+				</li>
 			</ul>
 			<Button
 				type='button'
