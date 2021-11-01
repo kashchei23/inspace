@@ -101,7 +101,7 @@ const Home = () => {
 						className={`content-loader-image ${
 							isReadyToDisplay ? 'hide' : 'show'
 						}`}
-					></img>
+					/>
 				</div>
 			)}
 			<div

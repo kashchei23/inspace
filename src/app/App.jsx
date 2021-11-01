@@ -2,55 +2,60 @@ import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import '../styles/global.scss';
-import './App.scss';
 
 import Layout from '../components/layout/Layout';
 import Home from '../pages/home/Home';
 import About from '../pages/about/About';
-import Contact from '../pages/contact/Contact.jsx';
 import Developer from '../pages/developer/Developer';
-import PictureList from '../pages/pictureList/PictureList';
+import Gallery from '../pages/gallery/Gallery';
 import PictureOfTheDay from '../pages/pictureOfTheDay/PictureOfTheDay';
-import { NasaDataProvider } from '../context/NasaContext';
+import { AppContextProvider } from '../context/AppContext';
 import { useFetch } from '../api/useFetch';
 
 const App = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [searchIsActive, setSearchIsActive] = useState(false);
+	const [isShadowOn, setIsShadowOn] = useState(false);
+	const [isBackButtonVisible, setIsBackButtonVisible] = useState(false);
+
 	const navState = {
 		isMenuOpen,
 		setIsMenuOpen,
 		searchIsActive,
 		setSearchIsActive,
+		isShadowOn,
+		setIsShadowOn,
+		isBackButtonVisible,
+		setIsBackButtonVisible,
 	};
 
 	//* Query state
 	const initialQueryState = { fromDate: '', toDate: '' };
-	const [query, setQuery] = useState(initialQueryState);
+	const [galleryQuery, setQuery] = useState(initialQueryState);
 	const [isDateEntered, setIsDateEntered] = useState(false);
 	const queryState = {
-		query,
+		galleryQuery,
 		setQuery,
 		isDateEntered,
 		setIsDateEntered,
 	};
 
-	// //* Fetch API data in custom hook
-	const fetchProps = { query, isDateEntered, setIsDateEntered };
-	const fetchedData = useFetch(fetchProps);
-
-	const [endpoint, setEndpoint] = useState('');
-	const endpointState = { endpoint, setEndpoint };
+	const { nasaData, isLoading, error } = useFetch(
+		galleryQuery,
+		isDateEntered,
+		setIsDateEntered
+	);
 
 	const state = {
 		queryState,
 		navState,
-		fetchedData,
-		endpointState,
+		nasaData,
+		isLoading,
+		error,
 	};
 
 	return (
-		<NasaDataProvider value={state}>
+		<AppContextProvider value={state}>
 			<BrowserRouter>
 				<Layout>
 					<Switch>
@@ -63,19 +68,16 @@ const App = () => {
 						<Route path='/developer'>
 							<Developer />
 						</Route>
-						<Route path='/picture-list'>
-							<PictureList />
+						<Route path='/gallery/:query'>
+							<Gallery />
 						</Route>
-						<Route path={`/picture-of-the-day/${endpoint}`}>
-							<PictureOfTheDay endpoint={endpoint} />
-						</Route>
-						<Route path='/contact'>
-							<Contact />
+						<Route path={`/picture-of-the-day/:date`}>
+							<PictureOfTheDay />
 						</Route>
 					</Switch>
 				</Layout>
 			</BrowserRouter>
-		</NasaDataProvider>
+		</AppContextProvider>
 	);
 };
 
