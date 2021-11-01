@@ -3,11 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { AppContext } from '../../context/AppContext';
 import Button from '../../components/button/Button';
-import {
-	formatDate,
-	// calculateMaxOrMIN_DATE,
-	getRangeDate,
-} from '../../helpers/dateRangeAndFormat';
+import { formatDate, getMaxDate } from '../../helpers/dateRangeAndFormat';
 import './MobileSearchForm.scss';
 
 const MobileSearchForm = () => {
@@ -15,51 +11,70 @@ const MobileSearchForm = () => {
 	const inputFromRef = useRef(null);
 	const inputToRef = useRef(null);
 	const history = useHistory();
-	const MIN_DATE = '1995-06-16';
-	const MAX_DATE = formatDate(new Date());
-	const [maxRangeDate, setMaxRangeDate] = useState('');
-	const [minRangeDate, setMinRangeDate] = useState('');
+	const ABSOLUTE_MIN_DATE = '1995-06-16';
+	const ABSOLUTE_MAX_DATE = formatDate(new Date());
+	const [toDateMin, setToDateMin] = useState(null);
+	const [toDateMax, setToDateMax] = useState(null);
+	const [fromDateMin, setFromDateMin] = useState(null);
+	const [fromDateMax, setFromDateMax] = useState(null);
 
-	const resetAndCloseForm = () => {
-		navState.setSearchIsActive(false);
+	const clearForm = () => {
 		inputFromRef.current.value = '';
 		inputToRef.current.value = '';
 		inputFromRef.current.setAttribute('class', 'text-color-default');
 		inputToRef.current.setAttribute('class', 'text-color-default');
+		setFromDateMin(ABSOLUTE_MIN_DATE);
+		setFromDateMax(ABSOLUTE_MAX_DATE);
+		setToDateMin(ABSOLUTE_MIN_DATE);
+		setToDateMax(ABSOLUTE_MAX_DATE);
 	};
 
 	const handleDateInput = (e) => {
 		if (e.target.value !== '')
 			e.target.setAttribute('class', 'text-color-blur');
-		setMaxRangeDate(getRangeDate(e.target));
-		setMinRangeDate(e.target.value);
+
+		if (e.target.name === 'fromDate') {
+			setToDateMin(e.target.value);
+			setToDateMax(getMaxDate(e.target));
+		}
+		if (e.target.name === 'toDate') {
+			setFromDateMax(e.target.value);
+			return setFromDateMin(getMaxDate(e.target));
+		}
 	};
 
+	// TODO REFACTOR THIS - TOO MUCH
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+
 		queryState.setQuery({
+			name: 'galleryQuery',
 			fromDate: inputFromRef.current.value,
 			toDate: inputToRef.current.value,
 		});
 
 		queryState.setIsDateEntered(true);
 
-		history.push('/gallery');
+		history.push(
+			`/gallery/start_date=${inputFromRef.current.value}&end_date=${inputToRef.current.value}`
+		);
 
-		resetAndCloseForm();
+		clearForm();
+
+		navState.setSearchIsActive(false);
 	};
 
 	useEffect(() => {
-		setMaxRangeDate(getRangeDate(MAX_DATE));
-	}, []);
+		if (!navState.searchIsActive) clearForm();
+	}, [navState]);
 
 	return (
 		<div
 			className={`search-menu ${navState.searchIsActive && 'show-search-menu'}`}
 			data-test-id='data-test-form'
 		>
-			<h2>Enter your search dates</h2>
 			<form onSubmit={handleSubmit}>
 				<div className='form-input'>
 					<label htmlFor='fromDate'>Start date: </label>
@@ -70,8 +85,10 @@ const MobileSearchForm = () => {
 						ref={inputFromRef}
 						onBlur={handleDateInput}
 						className='text-color-default'
-						min={MIN_DATE}
-						max={MAX_DATE}
+						title='Max search range 7 days'
+						min={fromDateMin}
+						max={fromDateMax}
+						autoComplete='off'
 					/>
 				</div>
 				<div className='form-input'>
@@ -79,23 +96,26 @@ const MobileSearchForm = () => {
 					<input
 						type='date'
 						name='toDate'
+						title='Max search range 7 days'
 						required
 						ref={inputToRef}
 						onBlur={handleDateInput}
 						className='text-color-default'
-						min={minRangeDate}
-						max={maxRangeDate}
+						min={toDateMin}
+						max={toDateMax}
+						autoComplete='off'
 					/>
 				</div>
 				<Button type='submit' className='button' innerText='Search' />
-				<Button
+				<button
 					type='button'
-					className='close-search-button'
-					innerText='Close search'
-					onClick={resetAndCloseForm}
-				/>
+					className='reset-search-button'
+					onClick={clearForm}
+				>
+					Reset search
+				</button>
 			</form>
-			<div className='nav-border' />
+			<div className='search-menu-border' />
 		</div>
 	);
 };
