@@ -6,30 +6,34 @@ import { AppContext } from '../../context/AppContext';
 import './Gallery.scss';
 
 const Gallery = () => {
-	const { navState, nasaData, isLoading, error } = useContext(AppContext);
+	const { navState, nasaData, queryState, isLoading, error } =
+		useContext(AppContext);
+
 	const [loadingContent, setLoadingContent] = useState(false);
-	const [isMounted, setIsMounted] = useState(false);
+	const [isImageLoaded, setIsImageLoaded] = useState(false);
 
 	const handleClick = () => {
 		navState.setIsBackButtonVisible(true);
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
 
+	const getLoadStatus = () => {
+		setIsImageLoaded(true);
+	};
+
+	useEffect(() => {
+		if (queryState.isDateEntered) {
+			setIsImageLoaded(false);
+		}
+	}, [queryState.isDateEntered]);
+
 	useEffect(() => {
 		if (!isLoading && nasaData) {
-			setLoadingContent(true);
 			setTimeout(() => {
 				setLoadingContent(false);
 			}, 400);
 		}
 	}, [isLoading, nasaData]);
-
-	useEffect(() => {
-		setIsMounted(true);
-		return () => {
-			setIsMounted(false);
-		};
-	}, []);
 
 	return (
 		<div className='page'>
@@ -47,17 +51,11 @@ const Gallery = () => {
 							</h4>
 						)}
 					</header>
-					<div
-						className={`gallery ${
-							isMounted || !loadingContent
-								? 'fade-in-gallery'
-								: 'fade-out-gallery'
-						}`}
-					>
+					<div className='gallery'>
 						{nasaData?.map((data) => {
 							return (
 								<div key={data.date}>
-									{!loadingContent ? (
+									{!loadingContent && (
 										<Link
 											to={`/picture-of-the-day/${data.date}`}
 											name={data.date}
@@ -66,20 +64,40 @@ const Gallery = () => {
 										>
 											<div className='gallery-card'>
 												{data.media_type === 'image' ? (
-													<img
-														src={data.url}
-														alt={data.title}
-														className='gallery-img'
-													/>
+													<>
+														<img
+															src={data.url}
+															alt={data.title}
+															className='gallery-img'
+															onLoad={getLoadStatus}
+														/>
+														<div
+															className={`placeholder ${
+																isImageLoaded && 'hide-placeholder'
+															}`}
+														>
+															<div className='test' />
+															<div className='shimmer' />
+														</div>
+													</>
 												) : (
 													data.media_type === 'video' && (
-														<iframe
-															width='420'
-															height='315'
-															src={data.url}
-															title={data.title}
-															className='gallery-video'
-														/>
+														<>
+															<iframe
+																width='420'
+																height='315'
+																src={data.url}
+																title={data.title}
+																className='gallery-video'
+																onLoad={getLoadStatus}
+															/>
+															<div
+																className={`test ${
+																	isImageLoaded && 'hide-placeholder'
+																}`}
+																key={data.date}
+															></div>
+														</>
 													)
 												)}
 												<div className='gallery-img-text'>
@@ -89,10 +107,6 @@ const Gallery = () => {
 												<div className='gallery-card-shadow'></div>
 											</div>
 										</Link>
-									) : (
-										<div className='gallery-card-placeholder' key={data.date}>
-											<div className='shimmer'></div>
-										</div>
 									)}
 								</div>
 							);
