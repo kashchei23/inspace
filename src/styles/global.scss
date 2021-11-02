@@ -1,31 +1,79 @@
-@import './_colors.scss';
-@import './_breakpoints';
-@import './normalize.scss';
+@use './_colors' as colors;
+@use './_breakpoints' as breakpoints;
+@use './normalize';
 
-// $globalFont: hero-new-regular, sans-serif;
-// $globalFont: hero-new-ultralight, sans-serif;
-$globalFont: hero-new, sans-serif;
-
-html {
-	background-color: $off-black;
-	box-sizing: border-box;
-	font-family: $globalFont;
-	font-display: swap;
-	font-style: normal;
-	color: $off-white;
-}
 *,
 *:before,
 *:after {
 	box-sizing: inherit;
 }
 
-h1 {
-	font-size: 32px;
-	font-weight: 600;
+$globalFont: hero-new, sans-serif;
+
+html {
+	background-color: colors.$off-black;
+	box-sizing: border-box;
+	font-family: $globalFont;
+	font-display: swap;
+	font-style: normal;
+	color: colors.$off-white;
+	font-size: 16px;
+	@media (min-width: breakpoints.$breakpoint-mobile) {
+		font-size: 16px;
+	}
+	@media (min-width: breakpoints.$breakpoint-tablet-large) {
+		font-size: 18px;
+	}
+}
+html,
+body {
+	height: 100%;
 }
 
+h1 {
+	font-size: 1.75rem;
+	font-weight: 300;
+}
 h2 {
-	font-size: 24px;
-	font-weight: 600;
+	font-size: 1.25rem;
+	font-weight: 300;
+}
+
+h4 {
+	font-size: 1rem;
+	font-weight: 400;
+}
+
+p,
+li {
+	font-size: 1rem;
+	font-weight: 200;
+	line-height: 1.6;
+	@media (min-width: breakpoints.$breakpoint-mobile) {
+		line-height: 1.7;
+	}
+}
+
+a {
+	color: colors.$off-white;
+}
+
+figure {
+	position: relative;
+	margin: 20px 0;
+	figcaption {
+		font-size: 0.75rem;
+		font-weight: 300;
+		display: flex;
+		justify-content: space-between;
+		span {
+			max-width: 200px;
+			@media (min-width: breakpoints.$breakpoint-mobile) {
+				max-width: 300px;
+			}
+			@media (min-width: breakpoints.$breakpoint-tablet) {
+				max-width: unset;
+			}
+		}
+	}
 }

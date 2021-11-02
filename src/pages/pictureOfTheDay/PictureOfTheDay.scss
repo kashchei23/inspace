@@ -1,0 +1,13 @@
+@use '../../styles/_mixins.scss' as mixins;
+
+.picture {
+	&-title {
+		@include mixins.page-title;
+	}
+	&-image {
+		@include mixins.page-image;
+	}
+	&-video {
+		@include mixins.page-video;
+	}
+}

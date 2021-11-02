@@ -7,19 +7,19 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		width: 350px;
+		width: 300px;
 		position: absolute;
 		right: 24px;
 		a {
-			font-size: 16px;
+			font-size: 14px;
 			text-decoration: none;
 			letter-spacing: 1px;
-			color: colors.$off-white;
 			position: relative;
 			transition: all 0.1s ease-in;
 			&:hover,
-			&:active {
-				color: colors.$yellow;
+			&:focus {
+				outline: none;
+				color: #d99c2a;
 			}
 		}
 	}

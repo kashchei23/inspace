@@ -1,18 +1,16 @@
-@import '../../styles/_colors.scss';
-@import '../../styles/_breakpoints';
+@use '../../styles/_colors.scss' as colors;
+@use '../../styles/_breakpoints.scss' as breakpoints;
+@use '../../styles/_mixins.scss' as mixins;
 
-.page-shadow {
-	position: fixed;
-	display: block;
-	z-index: 1;
-	height: 100vh;
-	width: 100vw;
-	top: 0;
-	left: 0;
-	pointer-events: none;
-	transition: all 0.2s ease-in;
-	&.fade-in {
-		background-color: rgba(0, 0, 0, 0.5);
-		pointer-events: all;
-	}
+.about {
+	max-width: 600px;
+	margin: auto;
+}
+li {
+	margin: 16px 0;
+}
+.external-link {
+	color: #78a4f9 !important;
+	text-decoration: underline;
+	font-weight: 300;
 }

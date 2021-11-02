@@ -1,0 +1,96 @@
+@use '../../styles/_colors.scss' as colors;
+@use '../../styles/_breakpoints' as breakpoints;
+@use '../../styles/_mixins' as mixins;
+
+.topNav {
+	width: 100%;
+	margin: auto;
+	background-color: colors.$off-black;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	z-index: 20;
+	color: colors.$off-white;
+	&-border {
+		@include mixins.nav-border;
+		bottom: 0;
+	}
+	&-back-icon {
+		outline: none;
+		width: 40px;
+		margin-left: -40px;
+		height: 100%;
+		padding: 14px;
+		z-index: 1;
+		transition: all 0.2s ease-out;
+		&-show {
+			margin-left: 8px;
+		}
+		img {
+			width: 100%;
+		}
+	}
+}
+
+.menu-button {
+	outline: none;
+	border: none;
+	background-color: transparent;
+	padding: 10px 24px;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	z-index: 3;
+	&-open {
+		transition: all 0.2s ease;
+		background-color: colors.$dark-purple;
+	}
+	@media (min-width: breakpoints.$breakpoint-tablet) {
+		display: none;
+	}
+	&-bars {
+		pointer-events: none;
+		background-color: colors.$off-white;
+		width: 35px;
+		height: 2px;
+		transition: all 0.1s ease-in;
+		position: relative;
+		&:nth-child(2) {
+			margin: 6px 0;
+		}
+		&:nth-child(4) {
+			position: absolute;
+			top: 50%;
+			bottom: 50%;
+			transform: translate(0%, -50%);
+		}
+	}
+	&-fixed {
+		position: fixed;
+		right: 0;
+	}
+}
+
+.open-menu {
+	&:nth-of-type(odd) {
+		opacity: 0;
+	}
+	&:nth-of-type(2) {
+		transform: rotate(45deg);
+	}
+	&:nth-of-type(4) {
+		transform: rotate(-45deg);
+	}
+}
+
+.topNav-logo {
+	margin-left: 24px;
+	font-size: 24px;
+	@include mixins.logo;
+	&-mark {
+		background-image: colors.$primary-gradient-light;
+		color: colors.$off-black;
+	}
+}

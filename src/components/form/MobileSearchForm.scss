@@ -4,15 +4,88 @@
 
 .search-menu {
 	text-align: center;
+	background-image: colors.$primary-gradient-dark;
+	padding: 24px 0;
+	width: 100%;
+	position: fixed;
+	left: 0px;
+	bottom: -100%;
+	z-index: 16;
+	transition: all 0.2s ease-out;
+	margin-top: 50px;
+	&-border {
+		@include mixins.nav-border;
+		top: 0;
+	}
+	@media (min-width: breakpoints.$breakpoint-tablet-large) {
+		top: 250px;
+		bottom: unset;
+		left: unset;
+		height: 300px;
+		border-radius: 0 0 0 10px;
+		margin: 0;
+		right: -100%;
+		width: 400px;
+	}
 }
+
+.reset-search-button {
+	border: none;
+	outline: none;
+	background: transparent;
+	margin: auto;
+	display: block;
+	font-size: 0.75rem;
+	color: colors.$off-white;
+	transition: all 0.2s ease;
+	&:hover {
+		color: colors.$yellow;
+	}
+}
+
+.show-search-menu {
+	bottom: 49px;
+	@media (min-width: breakpoints.$breakpoint-tablet-large) {
+		bottom: unset;
+		right: 70px;
+	}
+}
+
+form {
+	margin-top: 32px;
+	@media (min-width: breakpoints.$breakpoint-tablet-large) {
+		margin-top: 0;
+	}
+}
+
 .form-input {
 	display: inline-block;
-	margin: 24px 8px;
+	margin: 12px 24px;
 	input {
-		width: 125px;
+		width: 150px;
+		text-align: center;
+		@media (min-width: breakpoints.$breakpoint-mobile) {
+			width: 175px;
+		}
+		@media (min-width: breakpoints.$breakpoint-tablet-large) {
+			width: 200px;
+		}
 		outline: none;
 		border: none;
 		border-bottom: 2px solid colors.$off-white;
 		background-color: transparent;
 	}
+	input[type='date']::-webkit-calendar-picker-indicator {
+		filter: invert(1);
+		margin: 0;
+		opacity: 0.5;
+	}
+}
+
+.text-color-default {
+	color: #696969;
+}
+
+.text-color-blur {
+	color: colors.$off-white;
 }

@@ -1,0 +1,64 @@
+@use '../../styles/_breakpoints.scss' as breakpoints;
+@use '../../styles/_colors.scss' as colors;
+@use '../../styles/_animations';
+@use '../../styles/_mixins' as mixins;
+
+.splash {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	z-index: 30;
+	animation: 1.5s forwards splashFadeIn;
+}
+
+.splash-vid {
+	height: 100vh;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.splash-img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 20;
+	width: 200px;
+	// transform: translate(-50%, -50%);
+	animation: 1.5s forwards ease scaleUp;
+}
+
+@keyframes splashFadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes splashFadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+.splash-fade {
+	animation: 0.2s forwards splashFadeOut;
+}
+
+@keyframes scaleUp {
+	0% {
+		transform: translate(-50%, -50%) scale(1);
+		opacity: 0;
+	}
+	100% {
+		transform: translate(-50%, -50%) scale(1.1);
+		opacity: 1;
+	}
+}

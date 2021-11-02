@@ -1,0 +1,14 @@
+@use '../../styles/_breakpoints.scss' as breakpoints;
+
+.main-wrapper {
+	padding-top: 60px;
+	min-height: 100vh;
+	position: relative;
+}
+
+.main-container {
+	max-width: breakpoints.$breakpoint-tablet-large;
+	margin: auto;
+	overflow: auto;
+	padding-bottom: 500px;
+}

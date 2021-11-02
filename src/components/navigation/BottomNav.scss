@@ -1,0 +1,90 @@
+@use '../../styles/_colors.scss' as colors;
+@use '../../styles/_breakpoints' as breakpoints;
+@use '../../styles/_mixins' as mixins;
+
+.bottomNav {
+	width: 100%;
+	margin: auto;
+	background-color: colors.$off-black;
+	height: 55px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	position: fixed;
+	bottom: -1px;
+	z-index: 20;
+	color: colors.$off-white;
+	&-border {
+		@include mixins.nav-border;
+		top: 0;
+	}
+	@media (min-width: breakpoints.$breakpoint-tablet-large) {
+		box-shadow: -3px 0px 3px #0f0f0f;
+		justify-content: space-around;
+		bottom: unset;
+		right: 0;
+		width: 70px;
+		height: 300px;
+		top: 250px;
+		flex-direction: column;
+		background-color: colors.$slate;
+	}
+}
+
+.icon {
+	display: flex;
+	align-items: flex-end;
+	background: transparent;
+	padding: 6px;
+	height: 50px;
+	border: none;
+	outline: none;
+	box-shadow: none;
+	background-repeat: no-repeat;
+	background-position: 50% 20%;
+	position: relative;
+	background-size: 20px 20px;
+	opacity: 0.5;
+	transition: all 0.2s ease;
+	&:hover,
+	&:focus {
+		opacity: 1;
+	}
+	&:hover,
+	&:focus &-text {
+		color: colors.$yellow;
+	}
+	&-text {
+		color: colors.$off-white;
+		font-size: 0.5rem;
+	}
+}
+
+.link-icon-home {
+	@extend .icon;
+	background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1634105272/icons/Icon_material-home_2x_umtm0z.png');
+	&:hover,
+	&:focus {
+		background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1634148446/icons/Icon-home-active_yrrajy.png');
+	}
+}
+
+.button-icon-search {
+	@extend .icon;
+	background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1632850751/icons/search-icon.png');
+	&:hover,
+	&:focus,
+	&-active {
+		background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1634145573/icons/Icon-search-active_jlqcp8.png');
+	}
+}
+
+.button-icon-brightness {
+	@extend .icon;
+	background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1634145573/icons/Icon-brightness-off_ybmjya.png');
+	&:hover,
+	&:focus,
+	&-active {
+		background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1634145573/icons/Icon-brightness-active_ivpolo.png');
+	}
+}

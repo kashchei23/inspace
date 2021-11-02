@@ -1,0 +1,101 @@
+@use './_colors' as colors;
+@use './_breakpoints' as breakpoints;
+
+.page {
+	padding: 0 24px;
+	&-header {
+		text-align: center;
+	}
+	&-title {
+		text-align: center;
+		margin: 28px 0;
+	}
+	&-title-underline {
+		text-decoration: underline;
+	}
+}
+
+.expandable-text-wrapper {
+	position: relative;
+	overflow: hidden;
+	margin: 0 auto 20px;
+	max-width: 750px;
+	&-shadow {
+		box-shadow: 0 -80px 80px colors.$off-black inset;
+		width: 110%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: -24px;
+		z-index: 1;
+	}
+}
+
+.expand-text {
+	transition: all 0.2s ease;
+	max-height: 700px;
+}
+
+.contract-text {
+	transition: all 0.2s ease;
+	max-height: 200px;
+}
+
+.hide {
+	transition: all 0.5s ease;
+	opacity: 0;
+}
+
+.show {
+	transition: opacity 1s ease;
+	opacity: 1;
+}
+
+.smaller-text {
+	font-size: 0.88rem;
+	font-weight: 100;
+	color: colors.$off-white;
+}
+
+.page-shadow {
+	position: fixed;
+	display: block;
+	@media (min-width: breakpoints.$breakpoint-tablet) {
+		// display: none;
+	}
+	z-index: 8;
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+	transition: all 0.1s ease-in;
+	background-color: rgba(0, 0, 0, 0.9);
+	opacity: 0;
+	&-show {
+		opacity: 1;
+		pointer-events: all;
+	}
+}
+
+.brightness-shadow {
+	@extend .page-shadow;
+	z-index: 6;
+	&-show {
+		display: block;
+		opacity: 1;
+		pointer-events: all;
+	}
+}
+
+.slow-fade {
+	transition: all 0.8s ease-in;
+}
+
+.animate-content-text {
+	animation: 1s forwards ease fadeSlide;
+}
+
+.animate-fadeIn {
+	animation: 1s forwards ease fadeIn;
+}
