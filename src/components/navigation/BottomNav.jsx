@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 
 import IconButton from '../../components/button/iconButton/IconButton';
+import IconLink from '../../components/styledLink/iconLink/IconLink';
 import MobileSearchForm from '../form/MobileSearchForm';
 import './BottomNav.scss';
 
@@ -11,42 +11,49 @@ const BottomNav = () => {
 	const { navState } = useContext(AppContext);
 
 	const handleSearchClick = () => {
-		navState.setSearchIsActive((prevSearchIsActive) => !prevSearchIsActive);
+		navState.setIsSearchActive((previsSearchActive) => !previsSearchActive);
 		navState.setIsMenuOpen(false);
 	};
 
 	const closeSearchAndMenu = () => {
-		navState.setSearchIsActive(false);
+		navState.setIsSearchActive(false);
 		navState.setIsMenuOpen(false);
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
 
 	const toggleTextBrightness = () => {
-		navState.setIsShadowOn((prevIsShadowOn) => !prevIsShadowOn);
+		navState.setIsPageShadowOn((previsPageShadowOn) => !previsPageShadowOn);
 	};
 
 	return (
 		<>
 			<nav className='bottomNav'>
-				<Link to='/' onClick={closeSearchAndMenu} className='home-button' />
+				<IconLink
+					to='/'
+					onClick={closeSearchAndMenu}
+					className='link-icon-home'
+					label='HOME'
+				/>
 				<IconButton
 					type='button'
-					className={`search-button ${
-						navState.searchIsActive && 'search-button-active'
+					className={`button-icon-search ${
+						navState.isSearchActive && 'button-icon-search-active'
 					}`}
 					onClick={handleSearchClick}
-				></IconButton>
+					label='SEARCH'
+				/>
 				<IconButton
 					type='button'
-					className={`brightness-button ${
-						navState.isShadowOn && 'brightness-button-active'
+					className={`button-icon-brightness ${
+						navState.isPageShadowOn && 'button-icon-brightness-active'
 					}`}
 					onClick={toggleTextBrightness}
+					label='BRIGHTNESS'
 				/>
 
 				<div
 					className={`bottomNav-border ${
-						navState.searchIsActive && 'bottomNav-border-fade'
+						navState.isSearchActive && 'bottomNav-border-fade'
 					}`}
 				/>
 			</nav>
