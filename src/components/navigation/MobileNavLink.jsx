@@ -6,7 +6,7 @@ const MobileNavLink = ({ to, text }) => {
 	const { navState } = useContext(AppContext);
 
 	const toggleMenu = () => {
-		navState.setSearchIsActive(false);
+		navState.setIsSearchActive(false);
 		navState.setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};

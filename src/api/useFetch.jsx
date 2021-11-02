@@ -57,7 +57,6 @@ export const useFetch = (query, isDateEntered, setIsDateEntered) => {
 					.catch(handleErrors);
 			}
 		};
-
 		if (isDateEntered) {
 			fetchData();
 			setIsDateEntered(false);

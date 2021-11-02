@@ -69,7 +69,10 @@ const Home = () => {
 						)}
 						<figcaption className='animate-content-text'>
 							<span>{currentPicture.date}</span>
-							<span>Copyright: {currentPicture.copyright}</span>
+							<span>
+								Copyright:{' '}
+								{currentPicture.copyright ? currentPicture.copyright : 'N/A'}
+							</span>
 						</figcaption>
 					</figure>
 					<div
@@ -106,7 +109,7 @@ const Home = () => {
 			)}
 			<div
 				className={`brightness-shadow ${
-					navState.isShadowOn && 'brightness-shadow-show slow-fade'
+					navState.isPageShadowOn && 'brightness-shadow-show slow-fade'
 				}`}
 			/>
 		</div>

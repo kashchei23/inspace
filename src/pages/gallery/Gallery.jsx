@@ -9,7 +9,7 @@ const Gallery = () => {
 	const { navState, nasaData, queryState, isLoading, error } =
 		useContext(AppContext);
 
-	const [loadingContent, setLoadingContent] = useState(false);
+	const [isContentLoading, setIsContentLoading] = useState(false);
 	const [isImageLoaded, setIsImageLoaded] = useState(false);
 
 	const handleClick = () => {
@@ -30,7 +30,7 @@ const Gallery = () => {
 	useEffect(() => {
 		if (!isLoading && nasaData) {
 			setTimeout(() => {
-				setLoadingContent(false);
+				setIsContentLoading(false);
 			}, 400);
 		}
 	}, [isLoading, nasaData]);
@@ -55,7 +55,7 @@ const Gallery = () => {
 						{nasaData?.map((data) => {
 							return (
 								<div key={data.date}>
-									{!loadingContent && (
+									{!isContentLoading && (
 										<Link
 											to={`/picture-of-the-day/${data.date}`}
 											name={data.date}

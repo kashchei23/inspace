@@ -80,7 +80,7 @@ const PictureOfTheDay = () => {
 					/>
 					<div
 						className={`brightness-shadow ${
-							navState.isShadowOn && 'brightness-shadow-show slow-fade'
+							navState.isPageShadowOn && 'brightness-shadow-show slow-fade'
 						}`}
 					/>
 				</>

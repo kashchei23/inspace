@@ -12,12 +12,12 @@ const TopNav = () => {
 	const menuBars = ['bar1', 'bar2', 'bar3', 'bar4'];
 
 	const handleMenuClick = () => {
-		navState.setSearchIsActive(false);
+		navState.setIsSearchActive(false);
 		navState.setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
 	};
 
 	const closeSearchAndMenu = () => {
-		navState.setSearchIsActive(false);
+		navState.setIsSearchActive(false);
 		navState.setIsMenuOpen(false);
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
@@ -70,7 +70,7 @@ const TopNav = () => {
 					}`}
 				/>
 			</nav>
-			{!navState.searchIsActive && <MobileMenu />}
+			{!navState.isSearchActive && <MobileMenu />}
 		</>
 	);
 };

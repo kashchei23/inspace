@@ -8,7 +8,7 @@ const About = () => {
 	const { navState } = useContext(AppContext);
 
 	const handleClick = () => {
-		navState.setSearchIsActive(true);
+		navState.setIsSearchActive(true);
 		navState.setIsMenuOpen(false);
 	};
 

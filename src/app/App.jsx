@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import '../styles/global.scss';
-
 import Layout from '../components/layout/Layout';
 import Home from '../pages/home/Home';
 import About from '../pages/about/About';
@@ -14,28 +13,27 @@ import { useFetch } from '../api/useFetch';
 
 const App = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [searchIsActive, setSearchIsActive] = useState(false);
-	const [isShadowOn, setIsShadowOn] = useState(false);
+	const [isSearchActive, setIsSearchActive] = useState(false);
+	const [isPageShadowOn, setIsPageShadowOn] = useState(false);
 	const [isBackButtonVisible, setIsBackButtonVisible] = useState(false);
 
 	const navState = {
 		isMenuOpen,
 		setIsMenuOpen,
-		searchIsActive,
-		setSearchIsActive,
-		isShadowOn,
-		setIsShadowOn,
+		isSearchActive,
+		setIsSearchActive,
+		isPageShadowOn,
+		setIsPageShadowOn,
 		isBackButtonVisible,
 		setIsBackButtonVisible,
 	};
 
-	//* Query state
 	const initialQueryState = { fromDate: '', toDate: '' };
-	const [galleryQuery, setQuery] = useState(initialQueryState);
+	const [galleryQuery, setGalleryQuery] = useState(initialQueryState);
 	const [isDateEntered, setIsDateEntered] = useState(false);
 	const queryState = {
 		galleryQuery,
-		setQuery,
+		setGalleryQuery,
 		isDateEntered,
 		setIsDateEntered,
 	};

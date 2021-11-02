@@ -43,13 +43,12 @@ const MobileSearchForm = () => {
 		}
 	};
 
-	// TODO REFACTOR THIS - TOO MUCH
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 
-		queryState.setQuery({
+		queryState.setGalleryQuery({
 			name: 'galleryQuery',
 			fromDate: inputFromRef.current.value,
 			toDate: inputToRef.current.value,
@@ -63,16 +62,16 @@ const MobileSearchForm = () => {
 
 		clearForm();
 
-		navState.setSearchIsActive(false);
+		navState.setIsSearchActive(false);
 	};
 
 	useEffect(() => {
-		if (!navState.searchIsActive) clearForm();
+		if (!navState.isSearchActive) clearForm();
 	}, [navState]);
 
 	return (
 		<div
-			className={`search-menu ${navState.searchIsActive && 'show-search-menu'}`}
+			className={`search-menu ${navState.isSearchActive && 'show-search-menu'}`}
 			data-test-id='data-test-form'
 		>
 			<form onSubmit={handleSubmit}>
