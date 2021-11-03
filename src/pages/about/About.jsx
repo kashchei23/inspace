@@ -13,7 +13,7 @@ const About = () => {
 	};
 
 	return (
-		<div className='about'>
+		<div className='about page'>
 			<h1 data-testid='about'>About</h1>
 			<p>
 				InSpace brings the wonderous imagery from the NASA Astronomy Picture of

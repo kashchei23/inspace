@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import '../styles/global.scss';
@@ -51,6 +51,12 @@ const App = () => {
 		isLoading,
 		error,
 	};
+
+	useEffect(() => {
+		return () => {
+			localStorage.clear();
+		};
+	}, []);
 
 	return (
 		<AppContextProvider value={state}>

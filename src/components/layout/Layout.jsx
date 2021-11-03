@@ -11,32 +11,36 @@ import { AppContext } from '../../context/AppContext';
 
 const Layout = ({ children }) => {
 	const { navState } = useContext(AppContext);
-	const [isSplashPlaying, setIsSplashPlaying] = useState(true);
-	const [splashClass, setSplashClass] = useState('');
+	const [splashPlayed, setSplashPlayed] = useState(
+		sessionStorage.getItem('splashPlayed')
+	);
+	const [isSplashAnimationEnded, setIsSplashAnimationEnded] = useState(false);
 
 	const closeSearchAndMenu = () => {
-		navState.setIsSearchActive(false);
+		navState.setSearchIsActive(false);
 		navState.setIsMenuOpen(false);
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
 
-	useEffect(() => {
-		setIsSplashPlaying(true);
-		setTimeout(() => {
-			setIsSplashPlaying(false);
-		}, 3000);
-	}, []);
+	const handleOnEnded = () => {
+		sessionStorage.setItem('splashPlayed', 'true');
+		setIsSplashAnimationEnded(true);
+	};
 
 	useEffect(() => {
-		setTimeout(() => {
-			setSplashClass('splash-fade');
-		}, 2800);
-	}, []);
+		if (isSplashAnimationEnded) {
+			setSplashPlayed(sessionStorage.getItem('splashPlayed'));
+			sessionStorage.setItem('splashPlayed', 'true');
+		}
+	}, [isSplashAnimationEnded, splashPlayed]);
 
 	return (
 		<>
-			{isSplashPlaying ? (
-				<Splash splashClass={splashClass} />
+			{!splashPlayed ? (
+				<Splash
+					handleOnEnded={handleOnEnded}
+					isSplashAnimationEnded={isSplashAnimationEnded}
+				/>
 			) : (
 				<>
 					<TopNav />
@@ -44,7 +48,7 @@ const Layout = ({ children }) => {
 						<main className='main-container'>
 							<div
 								className={`page-shadow ${
-									(navState.isMenuOpen || navState.isSearchActive) &&
+									(navState.isMenuOpen || navState.searchIsActive) &&
 									'page-shadow-show'
 								}`}
 								onClick={closeSearchAndMenu}

@@ -3,9 +3,10 @@ import { formatDate } from '../../helpers/dateRangeAndFormat';
 import { useFetch } from '../../api/useFetch';
 import { AppContext } from '../../context/AppContext';
 
-import Button from '../../components/button/Button';
 import './Home.scss';
 import '../../styles/_utilities.scss';
+import Button from '../../components/button/Button';
+// import SplashScreenHOC from '../../pages/splash/withSplashScreen';
 
 const Home = () => {
 	const { navState } = useContext(AppContext);
@@ -77,12 +78,12 @@ const Home = () => {
 					</figure>
 					<div
 						className={`expandable-text-wrapper ${
-							isAccordionOpen ? 'expand-text' : 'contract-text'
+							isAccordionOpen && 'expand-text'
 						}`}
 					>
 						<div
 							className={`expandable-text-wrapper-shadow ${
-								isAccordionOpen ? 'hide' : 'show'
+								isAccordionOpen && 'hide'
 							}`}
 						/>
 						<p className='animate-content-text'>{currentPicture.explanation}</p>
