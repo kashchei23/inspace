@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import LazyLoad from 'react-lazy-load';
 
 import { AppContext } from '../../context/AppContext';
 
@@ -14,7 +15,7 @@ const Gallery = () => {
 
 	const handleClick = () => {
 		navState.setIsBackButtonVisible(true);
-		window.scrollTo({ top: 0, behavior: 'smooth' });
+		window.scrollTo({ top: 0 });
 	};
 
 	const getLoadStatus = () => {
@@ -65,12 +66,22 @@ const Gallery = () => {
 											<div className='gallery-card'>
 												{data.media_type === 'image' ? (
 													<>
-														<img
-															src={data.url}
-															alt={data.title}
-															className='gallery-img'
-															onLoad={getLoadStatus}
-														/>
+														<LazyLoad
+															height={150}
+															offsetTop={100}
+															onContentVisible={() =>
+																console.log('look ma I have been lazyloaded!')
+															}
+														>
+															<img
+																src={data.url}
+																alt={data.title}
+																className='gallery-img'
+																onLoad={getLoadStatus}
+																loading='lazy'
+															/>
+														</LazyLoad>
+
 														<div
 															className={`placeholder ${
 																isImageLoaded && 'hide-placeholder'
@@ -90,6 +101,7 @@ const Gallery = () => {
 																title={data.title}
 																className='gallery-video'
 																onLoad={getLoadStatus}
+																loading='lazy'
 															/>
 															<div
 																className={`test ${
