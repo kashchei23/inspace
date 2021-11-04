@@ -33,12 +33,13 @@
 
 .icon {
 	display: flex;
+	justify-content: center;
 	align-items: flex-end;
 	background: transparent;
 	padding: 6px;
 	height: 50px;
+	width: 65px;
 	border: none;
-	outline: none;
 	box-shadow: none;
 	background-repeat: no-repeat;
 	background-position: 50% 20%;
@@ -47,12 +48,9 @@
 	opacity: 0.5;
 	transition: all 0.2s ease;
 	&:hover,
-	&:focus {
+	&:focus,
+	&:active {
 		opacity: 1;
-	}
-	&:hover,
-	&:focus &-text {
-		color: colors.$yellow;
 	}
 	&-text {
 		color: colors.$off-white;
@@ -64,7 +62,8 @@
 	@extend .icon;
 	background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1634105272/icons/Icon_material-home_2x_umtm0z.png');
 	&:hover,
-	&:focus {
+	&:focus,
+	&:active {
 		background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1634148446/icons/Icon-home-active_yrrajy.png');
 	}
 }
@@ -73,7 +72,6 @@
 	@extend .icon;
 	background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1632850751/icons/search-icon.png');
 	&:hover,
-	&:focus,
 	&-active {
 		background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1634145573/icons/Icon-search-active_jlqcp8.png');
 	}
@@ -83,7 +81,6 @@
 	@extend .icon;
 	background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1634145573/icons/Icon-brightness-off_ybmjya.png');
 	&:hover,
-	&:focus,
 	&-active {
 		background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1634145573/icons/Icon-brightness-active_ivpolo.png');
 	}

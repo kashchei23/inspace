@@ -1,5 +1,6 @@
 @use './_colors' as colors;
 @use './_breakpoints' as breakpoints;
+@use './_animations';
 
 .page {
 	padding: 0 24px;
@@ -20,6 +21,7 @@
 	overflow: hidden;
 	margin: 0 auto 20px;
 	max-width: 750px;
+	height: 200px;
 	&-shadow {
 		box-shadow: 0 -80px 80px colors.$off-black inset;
 		width: 110%;
@@ -33,12 +35,7 @@
 
 .expand-text {
 	transition: all 0.2s ease;
-	max-height: 700px;
-}
-
-.contract-text {
-	transition: all 0.2s ease;
-	max-height: 200px;
+	height: 100%;
 }
 
 .hide {

@@ -21,7 +21,8 @@
 	margin: 20px 0 8px -24px;
 	width: 100vw;
 	opacity: 0;
-	height: fit-content;
+	// height: fit-content;
+	height: auto;
 	animation: 1s forwards ease fadeIn;
 	@media (min-width: breakpoints.$breakpoint-tablet-large) {
 		width: 100%;

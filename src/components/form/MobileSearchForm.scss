@@ -4,6 +4,7 @@
 
 .search-menu {
 	text-align: center;
+	font-size: 16px;
 	background-image: colors.$primary-gradient-dark;
 	padding: 24px 0;
 	width: 100%;
@@ -27,6 +28,13 @@
 		right: -100%;
 		width: 400px;
 	}
+	&-open {
+		bottom: 49px;
+		@media (min-width: breakpoints.$breakpoint-tablet-large) {
+			bottom: unset;
+			right: 70px;
+		}
+	}
 }
 
 .reset-search-button {
@@ -43,33 +51,29 @@
 	}
 }
 
-.show-search-menu {
-	bottom: 49px;
-	@media (min-width: breakpoints.$breakpoint-tablet-large) {
-		bottom: unset;
-		right: 70px;
-	}
-}
-
 form {
-	margin-top: 32px;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	max-width: 260px;
+	margin: auto;
 	@media (min-width: breakpoints.$breakpoint-tablet-large) {
 		margin-top: 0;
 	}
 }
 
 .form-input {
-	display: inline-block;
-	margin: 12px 24px;
+	width: 100%;
+	display: flex;
+	flex-flow: row nowrap;
+	margin: 12px 0;
+	justify-content: space-between;
+	align-items: flex-end;
 	input {
+		border-radius: 0;
 		width: 150px;
+		height: 40px;
 		text-align: center;
-		@media (min-width: breakpoints.$breakpoint-mobile) {
-			width: 175px;
-		}
-		@media (min-width: breakpoints.$breakpoint-tablet-large) {
-			width: 200px;
-		}
 		outline: none;
 		border: none;
 		border-bottom: 2px solid colors.$off-white;
@@ -82,6 +86,9 @@ form {
 	}
 }
 
+label {
+	vertical-align: bottom;
+}
 .text-color-default {
 	color: #696969;
 }
