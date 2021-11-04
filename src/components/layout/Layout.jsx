@@ -5,7 +5,7 @@ import '../../styles/_utilities.scss';
 import TopNav from '../navigation/TopNav';
 import BottomNav from '../navigation/BottomNav';
 import Footer from '../footer/Footer';
-import Splash from '../pages/splash/Splash';
+import Splash from '../../pages/splash/Splash';
 
 import { AppContext } from '../../context/AppContext';
 
