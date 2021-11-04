@@ -5,7 +5,7 @@ import '../../styles/_utilities.scss';
 import TopNav from '../navigation/TopNav';
 import BottomNav from '../navigation/BottomNav';
 import Footer from '../footer/Footer';
-import Splash from '../../pages/splash/Splash';
+import Splash from '../pages/splash/Splash';
 
 import { AppContext } from '../../context/AppContext';
 
@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
 	const [isSplashAnimationEnded, setIsSplashAnimationEnded] = useState(false);
 
 	const closeSearchAndMenu = () => {
-		navState.setSearchIsActive(false);
+		navState.setIsSearchActive(false);
 		navState.setIsMenuOpen(false);
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
@@ -48,7 +48,7 @@ const Layout = ({ children }) => {
 						<main className='main-container'>
 							<div
 								className={`page-shadow ${
-									(navState.isMenuOpen || navState.searchIsActive) &&
+									(navState.isMenuOpen || navState.isSearchActive) &&
 									'page-shadow-show'
 								}`}
 								onClick={closeSearchAndMenu}

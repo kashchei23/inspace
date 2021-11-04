@@ -37,7 +37,7 @@ const BottomNav = () => {
 				<IconButton
 					type='button'
 					className={`button-icon-search ${
-						navState.isSearchActive && 'button-icon-search-active'
+						navState.isSearchActive ? 'button-icon-search-active' : ''
 					}`}
 					onClick={handleSearchClick}
 					label='SEARCH'
@@ -45,7 +45,7 @@ const BottomNav = () => {
 				<IconButton
 					type='button'
 					className={`button-icon-brightness ${
-						navState.isPageShadowOn && 'button-icon-brightness-active'
+						navState.isPageShadowOn ? 'button-icon-brightness-active' : ''
 					}`}
 					onClick={toggleTextBrightness}
 					label='BRIGHTNESS'

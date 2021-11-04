@@ -71,7 +71,7 @@ const MobileSearchForm = () => {
 
 	return (
 		<div
-			className={`search-menu ${navState.isSearchActive && 'show-search-menu'}`}
+			className={`search-menu ${navState.isSearchActive && 'search-menu-open'}`}
 			data-test-id='data-test-form'
 		>
 			<form onSubmit={handleSubmit}>
@@ -87,6 +87,7 @@ const MobileSearchForm = () => {
 						title='Max search range 7 days'
 						min={fromDateMin}
 						max={fromDateMax}
+						placeholder='yyyy-mm-dd'
 						autoComplete='off'
 					/>
 				</div>
@@ -102,10 +103,11 @@ const MobileSearchForm = () => {
 						className='text-color-default'
 						min={toDateMin}
 						max={toDateMax}
+						placeholder='yyyy-mm-dd'
 						autoComplete='off'
 					/>
 				</div>
-				<Button type='submit' className='button' innerText='Search' />
+				<Button type='submit' className='button' innerText='SEARCH' />
 				<button
 					type='button'
 					className='reset-search-button'
