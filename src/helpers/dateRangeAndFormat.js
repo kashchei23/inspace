@@ -5,31 +5,37 @@ export const formatDate = (dateObj) => {
 	return year + '-' + month + '-' + day;
 };
 
-const calculateRangeDate = (input) => {
-	const userDate = new Date(input.value);
-	const userInputMilliseconds = userDate.getTime();
+export const getMaxDate = (input) => {
 	const sevenDays = 7 * 86400000;
 
-	if (input.name === 'fromDate') {
-		return formatDate(new Date(userInputMilliseconds + sevenDays));
-	} else if (input.name === 'toDate') {
-		return formatDate(new Date(userInputMilliseconds - sevenDays));
-	}
-};
+	const firstDate = new Date('1995-06-16');
+	const firstDateInMilliseconds = firstDate.getTime();
 
-export const getRangeDate = (input) => {
 	const currentDate = new Date();
+	const currentDateInMilliseconds = currentDate.getTime();
+
 	const userDate = new Date(input.value);
-	const currentDateMilliseconds = currentDate.getTime();
-	const sevenDays = 7 * 86400000;
-	const sevenDaysAgo = new Date(currentDateMilliseconds - sevenDays);
+	const inputDateInMilliseconds = userDate.getTime();
 
-	if (userDate < sevenDaysAgo) {
-		return calculateRangeDate(input);
-	} else {
-		return formatDate(new Date());
+	const maxDate = new Date(inputDateInMilliseconds + sevenDays);
+	const minDate = new Date(inputDateInMilliseconds - sevenDays);
+
+	if (
+		input.name === 'toDate' &&
+		inputDateInMilliseconds - firstDateInMilliseconds > sevenDays
+	) {
+		return formatDate(minDate);
+	} else if (
+		input.name === 'toDate' &&
+		inputDateInMilliseconds - firstDateInMilliseconds < sevenDays
+	) {
+		return formatDate(firstDate);
 	}
-};
 
-// const testFrom = { value: '2021-10-20', name: 'fromDate' };
-// const testTo = { value: '2021-10-20', name: 'toDate' };
+	if (
+		input.name === 'fromDate' &&
+		currentDateInMilliseconds - inputDateInMilliseconds > sevenDays
+	) {
+		return formatDate(maxDate);
+	} else return formatDate(currentDate);
+};
