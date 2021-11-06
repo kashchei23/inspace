@@ -18,11 +18,11 @@
 		@include mixins.nav-border;
 		top: 0;
 	}
-	@media (min-width: breakpoints.$breakpoint-tablet-large) {
-		top: 250px;
-		bottom: unset;
+	@media (min-width: breakpoints.$breakpoint-tablet) {
+		// top: 250px;
+		bottom: 0px;
 		left: unset;
-		height: 300px;
+		height: 325px;
 		border-radius: 0 0 0 10px;
 		margin: 0;
 		right: -100%;
@@ -30,9 +30,9 @@
 	}
 	&-open {
 		bottom: 49px;
-		@media (min-width: breakpoints.$breakpoint-tablet-large) {
-			bottom: unset;
-			right: 70px;
+		@media (min-width: breakpoints.$breakpoint-tablet) {
+			bottom: 0px;
+			right: 60px;
 		}
 	}
 }

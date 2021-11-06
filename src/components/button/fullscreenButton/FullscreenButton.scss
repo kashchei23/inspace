@@ -1,0 +1,16 @@
+@use '../../../styles/_breakpoints.scss' as breakpoints;
+@use '../iconButton/IconButton.scss';
+
+.button-icon-fullscreen {
+	display: none;
+	@extend .icon-button;
+	@extend .icon-button-text;
+	@media (min-width: breakpoints.$breakpoint-tablet) {
+		display: block;
+		background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1636094666/icons/Icon-fullscreen_zwz5rz.png');
+		&:hover,
+		&-active {
+			background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1636094666/icons/Icon-fullscreen-active_han0bm.png');
+		}
+	}
+}

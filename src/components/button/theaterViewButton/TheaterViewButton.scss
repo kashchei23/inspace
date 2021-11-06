@@ -1,0 +1,21 @@
+@use '../iconButton/IconButton.scss';
+
+.button-icon-theater {
+	@extend .icon-button;
+	@extend .icon-button-text;
+	background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1636094666/icons/Icon-theater_jkpmeh.png');
+	&:hover,
+	&-active {
+		background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1636094666/icons/Icon-theater-active_qyaoov.png');
+	}
+	&-disabled {
+		background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1636094666/icons/Icon-theater_jkpmeh.png');
+		opacity: 0.2;
+		&:focus,
+		&:active,
+		&:hover {
+			opacity: 0.2;
+			background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1636094666/icons/Icon-theater_jkpmeh.png');
+		}
+	}
+}

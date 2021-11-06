@@ -1,36 +1,30 @@
-import React, { useContext, useEffect } from 'react';
-
-import MobileSearchForm from '../form/MobileSearchForm';
-import './BottomNav.scss';
+import React, { useContext } from 'react';
 
 import { AppContext } from '../../context/AppContext';
+import MobileSearchForm from '../form/MobileSearchForm';
 import TheaterViewButton from '../button/theaterViewButton/TheaterViewButton';
 import FullscreenButton from '../button/fullscreenButton/FullscreenButton';
 import SearchButton from '../button/searchButton/SearchButton';
 import HomeStyledLink from '../styledLink/homeStyledLink/HomeStyledLink';
+import './BottomNav.scss';
 
 const BottomNav = () => {
 	const { navState } = useContext(AppContext);
 
-	const bottomNavClass = `bottomNav ${
-		navState.isSearchActive ? 'bottomNav-active' : ''
-	}`;
-
-	const bottomNavTabClass = `bottomNav-tab bottomNav-tab-gradient ${
-		navState.isPageShadowOn ? 'bottomNav-tab-theater-mode' : ''
-	}`;
-
-	useEffect(() => {
-		console.log(navState.isSearchActive);
-	}, [navState]);
-
-	const toggleBottomNav = () => {};
 	return (
 		<>
-			<nav className={bottomNavClass}>
-				<button className={bottomNavTabClass} onClick={toggleBottomNav}>
-					<div className='bottomNav-tab-chevron'></div>
-				</button>
+			<nav
+				className={`bottomNav ${
+					navState.isSearchActive ? 'bottomNav-active' : ''
+				}`}
+			>
+				<div
+					className={`bottomNav-tab bottomNav-tab-gradient ${
+						navState.isPageShadowOn ? 'bottomNav-tab-theater-mode' : ''
+					}`}
+				>
+					<div className='bottomNav-tab-chevron' />
+				</div>
 				<HomeStyledLink />
 				<SearchButton />
 				<TheaterViewButton />
