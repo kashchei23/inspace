@@ -1,56 +1,40 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
-import IconButton from '../../components/button/iconButton/IconButton';
-import IconLink from '../../components/styledLink/iconLink/IconLink';
 import MobileSearchForm from '../form/MobileSearchForm';
 import './BottomNav.scss';
 
 import { AppContext } from '../../context/AppContext';
+import TheaterViewButton from '../button/theaterViewButton/TheaterViewButton';
+import FullscreenButton from '../button/fullscreenButton/FullscreenButton';
+import SearchButton from '../button/searchButton/SearchButton';
+import HomeStyledLink from '../styledLink/homeStyledLink/HomeStyledLink';
 
 const BottomNav = () => {
 	const { navState } = useContext(AppContext);
 
-	const handleSearchClick = () => {
-		navState.setIsSearchActive((previsSearchActive) => !previsSearchActive);
-		navState.setIsMenuOpen(false);
-	};
+	const bottomNavClass = `bottomNav ${
+		navState.isSearchActive ? 'bottomNav-active' : ''
+	}`;
 
-	const closeSearchAndMenu = () => {
-		navState.setIsSearchActive(false);
-		navState.setIsMenuOpen(false);
-		window.scrollTo({ top: 0, behavior: 'smooth' });
-	};
+	const bottomNavTabClass = `bottomNav-tab bottomNav-tab-gradient ${
+		navState.isPageShadowOn ? 'bottomNav-tab-theater-mode' : ''
+	}`;
 
-	const toggleTextBrightness = () => {
-		navState.setIsPageShadowOn((previsPageShadowOn) => !previsPageShadowOn);
-	};
+	useEffect(() => {
+		console.log(navState.isSearchActive);
+	}, [navState]);
 
+	const toggleBottomNav = () => {};
 	return (
 		<>
-			<nav className='bottomNav'>
-				<IconLink
-					to='/'
-					onClick={closeSearchAndMenu}
-					className='link-icon-home'
-					label='HOME'
-				/>
-				<IconButton
-					type='button'
-					className={`button-icon-search ${
-						navState.isSearchActive ? 'button-icon-search-active' : ''
-					}`}
-					onClick={handleSearchClick}
-					label='SEARCH'
-				/>
-				<IconButton
-					type='button'
-					className={`button-icon-brightness ${
-						navState.isPageShadowOn ? 'button-icon-brightness-active' : ''
-					}`}
-					onClick={toggleTextBrightness}
-					label='BRIGHTNESS'
-				/>
-
+			<nav className={bottomNavClass}>
+				<button className={bottomNavTabClass} onClick={toggleBottomNav}>
+					<div className='bottomNav-tab-chevron'></div>
+				</button>
+				<HomeStyledLink />
+				<SearchButton />
+				<TheaterViewButton />
+				<FullscreenButton />
 				<div
 					className={`bottomNav-border ${
 						navState.isSearchActive && 'bottomNav-border-fade'
