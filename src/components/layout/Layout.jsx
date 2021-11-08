@@ -7,18 +7,25 @@ import BottomNav from '../navigation/BottomNav';
 import Footer from '../footer/Footer';
 import Splash from '../../pages/splash/Splash';
 
-import { AppContext } from '../../context/AppContext';
-
 const Layout = ({ children }) => {
-	const { navState } = useContext(AppContext);
+	//! navstate use context from here
+	//! state changes should happen on mount/unmount
+	// mobile menu
+	// search form
+	// mobile navlink
+	// About
+
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isSearchActive, setIsSearchActive] = useState(false);
+
 	const [splashPlayed, setSplashPlayed] = useState(
 		sessionStorage.getItem('splashPlayed')
 	);
 	const [isSplashAnimationEnded, setIsSplashAnimationEnded] = useState(false);
 
 	const closeSearchAndMenu = () => {
-		navState.setIsSearchActive(false);
-		navState.setIsMenuOpen(false);
+		setIsSearchActive(false);
+		setIsMenuOpen(false);
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
 
@@ -43,13 +50,16 @@ const Layout = ({ children }) => {
 				/>
 			) : (
 				<>
-					<TopNav />
+					<TopNav
+						isMenuOpen={isMenuOpen}
+						setIsMenuOpen={setIsMenuOpen}
+						setIsSearchActive={setIsSearchActive}
+					/>
 					<div className='main-wrapper'>
 						<main className='main-container'>
 							<div
 								className={`page-shadow ${
-									(navState.isMenuOpen || navState.isSearchActive) &&
-									'page-shadow-show'
+									(isMenuOpen || isSearchActive) && 'page-shadow-show'
 								}`}
 								onClick={closeSearchAndMenu}
 							/>
@@ -57,7 +67,10 @@ const Layout = ({ children }) => {
 						</main>
 						<Footer />
 					</div>
-					<BottomNav />
+					<BottomNav
+						isSearchActive={isSearchActive}
+						setIsSearchActive={setIsSearchActive}
+					/>
 				</>
 			)}
 		</>

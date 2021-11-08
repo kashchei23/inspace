@@ -12,16 +12,18 @@ import { AppContextProvider } from '../context/AppContext';
 import { useFetch } from '../api/useFetch';
 
 const App = () => {
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [isSearchActive, setIsSearchActive] = useState(false);
 	const [isPageShadowOn, setIsPageShadowOn] = useState(false);
 	const [isBackButtonVisible, setIsBackButtonVisible] = useState(false);
 
+	//> 2 types of Page Shadows - toggle logic can be in HOC
+	//* Theater shadow - or Layer comp. Home/PoTD/TheaterButton
+	//* Menu/Search shadow - or Layer comp. Home/PoTD/TheaterButton
+
+	//* backbutton should be in useContext
+
+	//* TheaterView should be UseContext
+
 	const navState = {
-		isMenuOpen,
-		setIsMenuOpen,
-		isSearchActive,
-		setIsSearchActive,
 		isPageShadowOn,
 		setIsPageShadowOn,
 		isBackButtonVisible,
@@ -86,3 +88,4 @@ const App = () => {
 };
 
 export default App;
+//89
