@@ -6,25 +6,22 @@ import MobileMenu from './MobileMenu';
 import DesktopMenu from './DesktopMenu';
 import { AppContext } from '../../context/AppContext';
 
-const TopNav = () => {
+const TopNav = ({ isMenuOpen, setIsMenuOpen, setIsSearchActive }) => {
 	const { navState, queryState } = useContext(AppContext);
 
 	const menuBars = ['bar1', 'bar2', 'bar3', 'bar4'];
 
 	const handleMenuClick = () => {
-		navState.setIsSearchActive(false);
-		navState.setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
+		setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
 	};
 
-	const closeSearchAndMenu = () => {
-		navState.setIsSearchActive(false);
-		navState.setIsMenuOpen(false);
+	const closeSearch = () => {
+		setIsMenuOpen(false);
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
 
 	const hideBackButtonAndNavigateBack = () => {
 		navState.setIsBackButtonVisible(false);
-		window.scrollTo({ top: 0 });
 	};
 
 	return (
@@ -42,35 +39,38 @@ const TopNav = () => {
 						alt='navigate back chevron'
 					/>
 				</Link>
-				<Link to='/' onClick={closeSearchAndMenu}>
+				<Link to='/' onClick={closeSearch}>
 					<div className='topNav-logo'>
 						<div className='topNav-logo-mark'>In</div>
 						<div className='topNav-logo-text'>Space</div>
 					</div>
 				</Link>
-				<DesktopMenu />
+				<DesktopMenu setIsSearchActive={setIsSearchActive} />
 				<button
-					className={`menu-button ${navState.isMenuOpen && 'menu-button-open'}`}
+					className={`menu-button ${isMenuOpen && 'menu-button-open'}`}
 					onClick={handleMenuClick}
+					data-name='mobile-menu'
 				>
 					{menuBars.map((bar) => {
 						return (
 							<div
 								key={bar}
-								className={`menu-button-bars ${
-									navState.isMenuOpen && 'open-menu'
-								}`}
+								className={`menu-button-bars ${isMenuOpen && 'open-menu'}`}
 							/>
 						);
 					})}
 				</button>
 				<div
-					className={`topNav-border ${
-						navState.isMenuOpen && 'topNav-border-fade'
-					}`}
+					className={`topNav-border ${isMenuOpen && 'topNav-border-fade'}`}
 				/>
 			</nav>
-			{!navState.isSearchActive && <MobileMenu />}
+			{isMenuOpen && (
+				<MobileMenu
+					isMenuOpen={isMenuOpen}
+					setIsMenuOpen={setIsMenuOpen}
+					setIsSearchActive={setIsSearchActive}
+				/>
+			)}
 		</>
 	);
 };

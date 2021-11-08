@@ -7,16 +7,10 @@ import { AppContext } from '../../context/AppContext';
 import './Gallery.scss';
 
 const Gallery = () => {
-	const { navState, nasaData, queryState, isLoading, error } =
-		useContext(AppContext);
+	const { nasaData, queryState, isLoading, error } = useContext(AppContext);
 
 	const [isContentLoading, setIsContentLoading] = useState(false);
 	const [isImageLoaded, setIsImageLoaded] = useState(false);
-
-	const handleClick = () => {
-		navState.setIsBackButtonVisible(true);
-		window.scrollTo({ top: 0 });
-	};
 
 	const getLoadStatus = () => {
 		setIsImageLoaded(true);
@@ -29,6 +23,7 @@ const Gallery = () => {
 	}, [queryState.isDateEntered]);
 
 	useEffect(() => {
+		window.scrollTo({ top: 0 });
 		if (!isLoading && nasaData) {
 			setTimeout(() => {
 				setIsContentLoading(false);
@@ -60,7 +55,6 @@ const Gallery = () => {
 										<Link
 											to={`/picture-of-the-day/${data.date}`}
 											name={data.date}
-											onClick={handleClick}
 											className='gallery-card-link'
 										>
 											<div className='gallery-card'>

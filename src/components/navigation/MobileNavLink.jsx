@@ -1,14 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { AppContext } from '../../context/AppContext';
 
 const MobileNavLink = ({ to, text }) => {
-	const { navState } = useContext(AppContext);
-
 	const toggleMenu = () => {
-		navState.setIsSearchActive(false);
-		navState.setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
-		window.scrollTo({ top: 0, behavior: 'smooth' });
+		window.scrollTo({ top: 0 });
 	};
 
 	return (
