@@ -6,8 +6,8 @@ import Button from '../../components/button/Button';
 import { formatDate, getMaxDate } from '../../helpers/dateRangeAndFormat';
 import './MobileSearchForm.scss';
 
-const MobileSearchForm = () => {
-	const { navState, queryState } = useContext(AppContext);
+const MobileSearchForm = ({ isSearchActive, setIsSearchActive }) => {
+	const { queryState } = useContext(AppContext);
 	const inputFromRef = useRef(null);
 	const inputToRef = useRef(null);
 	const history = useHistory();
@@ -46,8 +46,6 @@ const MobileSearchForm = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		window.scrollTo({ top: 0, behavior: 'smooth' });
-
 		queryState.setGalleryQuery({
 			name: 'galleryQuery',
 			fromDate: inputFromRef.current.value,
@@ -62,21 +60,35 @@ const MobileSearchForm = () => {
 
 		clearForm();
 
-		navState.setIsSearchActive(false);
+		setIsSearchActive(false);
+	};
+
+	const closeSearchForm = (e) => {
+		if (e.target.dataset.name !== 'search-form') {
+			setIsSearchActive(false);
+		}
 	};
 
 	useEffect(() => {
-		if (!navState.isSearchActive) clearForm();
-	}, [navState]);
+		window.addEventListener('click', closeSearchForm);
+		return () => {
+			window.removeEventListener('click', closeSearchForm);
+		};
+	});
 
 	return (
 		<div
-			className={`search-menu ${navState.isSearchActive && 'search-menu-open'}`}
+			className={`search-menu ${
+				isSearchActive ? 'search-menu-open' : 'search-menu-closed'
+			}`}
 			data-test-id='data-test-form'
+			data-name='search-form'
 		>
-			<form onSubmit={handleSubmit}>
-				<div className='form-input'>
-					<label htmlFor='fromDate'>Start date: </label>
+			<form onSubmit={handleSubmit} data-name='search-form'>
+				<div className='form-input' data-name='search-form'>
+					<label htmlFor='fromDate' data-name='search-form'>
+						Start date:{' '}
+					</label>
 					<input
 						type='date'
 						name='fromDate'
@@ -89,6 +101,7 @@ const MobileSearchForm = () => {
 						max={fromDateMax}
 						placeholder='yyyy-mm-dd'
 						autoComplete='off'
+						data-name='search-form'
 					/>
 				</div>
 				<div className='form-input'>
@@ -105,6 +118,7 @@ const MobileSearchForm = () => {
 						max={toDateMax}
 						placeholder='yyyy-mm-dd'
 						autoComplete='off'
+						data-name='search-form'
 					/>
 				</div>
 				<Button type='submit' className='button' innerText='SEARCH' />
@@ -112,6 +126,7 @@ const MobileSearchForm = () => {
 					type='button'
 					className='reset-search-button'
 					onClick={clearForm}
+					data-name='search-form'
 				>
 					Reset search
 				</button>

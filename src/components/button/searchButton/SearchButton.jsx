@@ -4,22 +4,22 @@ import { AppContext } from '../../../context/AppContext';
 import IconButton from '../iconButton/IconButton';
 import './SearchButton.scss';
 
-const SearchButton = () => {
+const SearchButton = ({ isSearchActive, setIsSearchActive }) => {
 	const { navState } = useContext(AppContext);
 
 	const handleSearchClick = () => {
-		navState.setIsSearchActive((previsSearchActive) => !previsSearchActive);
-		navState.setIsMenuOpen(false);
+		setIsSearchActive((previsSearchActive) => !previsSearchActive);
 	};
 
 	return (
 		<IconButton
 			type='button'
 			className={`button-icon-search ${
-				navState.isSearchActive ? 'button-icon-search-active' : ''
+				isSearchActive ? 'button-icon-search-active' : ''
 			}`}
 			onClick={handleSearchClick}
 			label='SEARCH'
+			data-name='search-form'
 		/>
 	);
 };

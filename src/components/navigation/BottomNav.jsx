@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { AppContext } from '../../context/AppContext';
 import MobileSearchForm from '../form/MobileSearchForm';
@@ -8,16 +8,11 @@ import SearchButton from '../button/searchButton/SearchButton';
 import HomeStyledLink from '../styledLink/homeStyledLink/HomeStyledLink';
 import './BottomNav.scss';
 
-const BottomNav = () => {
+const BottomNav = ({ isSearchActive, setIsSearchActive }) => {
 	const { navState } = useContext(AppContext);
-
 	return (
 		<>
-			<nav
-				className={`bottomNav ${
-					navState.isSearchActive ? 'bottomNav-active' : ''
-				}`}
-			>
+			<nav className={`bottomNav ${isSearchActive ? 'bottomNav-active' : ''}`}>
 				<div
 					className={`bottomNav-tab bottomNav-tab-gradient ${
 						navState.isPageShadowOn ? 'bottomNav-tab-theater-mode' : ''
@@ -26,16 +21,24 @@ const BottomNav = () => {
 					<div className='bottomNav-tab-chevron' />
 				</div>
 				<HomeStyledLink />
-				<SearchButton />
+				<SearchButton
+					isSearchActive={isSearchActive}
+					setIsSearchActive={setIsSearchActive}
+				/>
 				<TheaterViewButton />
 				<FullscreenButton />
 				<div
 					className={`bottomNav-border ${
-						navState.isSearchActive && 'bottomNav-border-fade'
+						isSearchActive && 'bottomNav-border-fade'
 					}`}
 				/>
 			</nav>
-			{!navState.isMenuOpen && <MobileSearchForm />}
+			{isSearchActive && (
+				<MobileSearchForm
+					isSearchActive={isSearchActive}
+					setIsSearchActive={setIsSearchActive}
+				/>
+			)}
 		</>
 	);
 };
