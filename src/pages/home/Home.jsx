@@ -1,24 +1,19 @@
 import React, { useContext, useRef, useState, useEffect } from 'react';
 import { formatDate } from '../../helpers/dateRangeAndFormat';
 import { useFetch } from '../../api/useFetch';
-import { AppContext } from '../../context/AppContext';
-import LazyLoad from 'react-lazy-load';
 
 import './Home.scss';
-import '../../styles/_utilities.scss';
-import Button from '../../components/button/Button';
+import '../../styles/_page.scss';
+import { TheaterContext } from '../../context/TheaterContext';
+import TheaterView from '../../components/theaterView/TheaterView';
+import { convertMonthToName } from '../../helpers/dateMonthFormatter';
 
 const Home = () => {
-	const { navState } = useContext(AppContext);
+	const { isTheaterOn } = useContext(TheaterContext);
 	const [isDateEntered, setIsDateEntered] = useState(false);
 	const [isReadyToDisplay, setIsReadyToDisplay] = useState(false);
 	const queryRef = useRef('');
 	const currentDate = formatDate(new Date());
-
-	const [isAccordionOpen, setIsAccordionOpen] = useState(false);
-	const openAccordion = () => {
-		setIsAccordionOpen(true);
-	};
 
 	const { currentNasaPicture, isLoading } = useFetch(
 		queryRef.current,
@@ -35,28 +30,30 @@ const Home = () => {
 	const currentPicture = currentNasaPicture && currentNasaPicture[0];
 
 	useEffect(() => {
+		console.log(isTheaterOn);
+		window.scrollTo({ top: 0 });
 		if (!isLoading && currentNasaPicture) {
-			setTimeout(() => {
-				setIsReadyToDisplay(true);
-			}, 1000);
+			setIsReadyToDisplay(true);
 		}
 		setIsDateEntered(true);
-	}, [isLoading, currentNasaPicture]);
+	}, [isLoading, currentNasaPicture, isTheaterOn]);
 
 	return (
-		<LazyLoad>
-			<div className='page home'>
-				<h2 className='page-title page-title-underline'>Today's Picture</h2>
-
+		<>
+			{isTheaterOn && <TheaterView featurePicture={currentPicture} />}
+			<div
+				className={`page page-scale-default ${
+					isTheaterOn && 'page-scale-down'
+				}`}
+			>
 				{isReadyToDisplay ? (
 					<>
-						<h1 className='home-title'>{currentPicture.title}</h1>
-						<figure>
+						<div className='hero'>
 							{currentPicture.media_type === 'image' ? (
 								<img
 									src={currentPicture.url}
 									alt={currentPicture.title}
-									className='home-image'
+									className='hero-image'
 								/>
 							) : (
 								currentPicture.media_type === 'video' && (
@@ -65,59 +62,40 @@ const Home = () => {
 										height='315'
 										src={currentPicture.url}
 										title={currentPicture.title}
-										className='home-video'
+										className='hero-video'
+										autoplay='false'
 									/>
 								)
 							)}
-							<figcaption className='animate-content-text'>
-								<span>{currentPicture.date}</span>
-								<span>
-									Copyright:{' '}
-									{currentPicture.copyright ? currentPicture.copyright : 'N/A'}
-								</span>
-							</figcaption>
-						</figure>
-						<div
-							className={`expandable-text-wrapper ${
-								isAccordionOpen && 'expand-text'
-							}`}
-						>
-							<div
-								className={`expandable-text-wrapper-shadow ${
-									isAccordionOpen && 'hide'
-								}`}
-							/>
+						</div>
+						<div className='feature-text'>
+							<div>
+								<h2 className='feature-text-title'>{currentPicture.title}</h2>
+							</div>
+							<div className='feature-text-date animate-content-text'>
+								{convertMonthToName(currentPicture.date)}
+							</div>
+
 							<p className='animate-content-text'>
 								{currentPicture.explanation}
 							</p>
 						</div>
-						<Button
-							type='button'
-							className={`button read-more-button ${
-								isAccordionOpen ? 'hide' : 'animate-fadeIn'
-							}`}
-							innerText='Read more'
-							onClick={openAccordion}
-						/>
 					</>
 				) : (
 					<div className='content-loader'>
 						<img
-							src='https://res.cloudinary.com/obkidz/image/upload/v1635289887/inspace/loading_spinner_zrwwvx.gif'
+							src='https://res.cloudinary.com/obkidz/image/upload/v1636490565/inspace/loading_spinner_n5bm5z.gif'
 							alt='Animated loading icon'
 							className={`content-loader-image ${
-								isReadyToDisplay ? 'hide' : 'show'
+								isReadyToDisplay
+									? 'content-loader-image-hide'
+									: 'content-loader-image-show'
 							}`}
 						/>
 					</div>
 				)}
-				<div
-					className={`brightness-shadow ${
-						navState.isPageShadowOn && 'brightness-shadow-show slow-fade'
-					}`}
-				/>
 			</div>
-		</LazyLoad>
+		</>
 	);
 };
 

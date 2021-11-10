@@ -4,9 +4,9 @@ import { useLocation } from 'react-router-dom';
 import { AppContext } from '../../../context/AppContext';
 import { TheaterContext } from '../../../context/TheaterContext';
 import IconButton from '../iconButton/IconButton';
-import './TheaterViewButton.scss';
+import './TheaterExitButton.scss';
 
-const TheaterViewButton = () => {
+const TheaterExitButton = () => {
 	const { navState } = useContext(AppContext);
 	const { setIsTheaterOn } = useContext(TheaterContext);
 
@@ -16,17 +16,17 @@ const TheaterViewButton = () => {
 	const [isButtonDisabled, setIsButtonDisabled] = useState(null);
 	const location = useLocation();
 
-	const toggleTheaterView = () => {
+	const toggleTheaterExit = () => {
 		setIsTheaterOn((prevIsTheaterOn) => !prevIsTheaterOn);
 	};
 
-	const closeTheaterView = (e) => {
+	const closeTheaterExit = (e) => {
 		if (e.target.dataset.name !== 'theater') setIsTheaterOn(false);
 	};
 	useEffect(() => {
-		document.addEventListener('click', closeTheaterView);
+		document.addEventListener('click', closeTheaterExit);
 		return () => {
-			document.removeEventListener('click', closeTheaterView);
+			document.removeEventListener('click', closeTheaterExit);
 		};
 	});
 	useEffect(() => {
@@ -56,12 +56,12 @@ const TheaterViewButton = () => {
 		<IconButton
 			type='button'
 			className={theaterButtonClass}
-			onClick={toggleTheaterView}
-			label='THEATER VIEW'
+			onClick={toggleTheaterExit}
+			label='THEATER Exit'
 			disabled={isButtonDisabled}
 			dataName='theater'
 		/>
 	);
 };
 
-export default TheaterViewButton;
+export default TheaterExitButton;
