@@ -1,6 +1,8 @@
 @use '../../styles/_colors.scss' as colors;
 @use '../../styles/_breakpoints' as breakpoints;
-@use '../../styles/_mixins' as mixins;
+@use '../../styles/_mixins-logo' as logo-mixins;
+@use '../../styles/_mixins-nav.scss' as nav-mixins;
+@use '../../styles/_transitions' as transitions;
 
 .topNav {
 	width: 100%;
@@ -14,7 +16,7 @@
 	z-index: 20;
 	color: colors.$off-white;
 	&-border {
-		@include mixins.nav-border;
+		@include nav-mixins.nav-border;
 		bottom: 0;
 	}
 	&-back-icon {
@@ -24,7 +26,7 @@
 		height: 100%;
 		padding: 14px;
 		z-index: 1;
-		transition: all 0.2s ease-out;
+		transition: transitions.$medium-transition-ease-out;
 		&-show {
 			margin-left: 8px;
 		}
@@ -44,7 +46,7 @@
 	right: 0;
 	z-index: 3;
 	&-open {
-		transition: all 0.2s ease;
+		transition: transitions.$medium-transition-ease;
 		background-color: colors.$dark-purple;
 	}
 	@media (min-width: breakpoints.$breakpoint-tablet) {
@@ -55,7 +57,7 @@
 		background-color: colors.$off-white;
 		width: 35px;
 		height: 2px;
-		transition: all 0.1s ease-in;
+		transition: transitions.$fast-transition-ease-in;
 		position: relative;
 		&:nth-child(2) {
 			margin: 6px 0;
@@ -86,9 +88,9 @@
 }
 
 .topNav-logo {
+	@include logo-mixins.logo;
 	margin-left: 24px;
 	font-size: 24px;
-	@include mixins.logo;
 	&-mark {
 		background-image: colors.$primary-gradient-light;
 		color: colors.$off-black;

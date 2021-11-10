@@ -2,7 +2,7 @@
 
 .button-icon-search {
 	@extend .icon-button;
-	@extend .icon-button-text;
+	@extend .icon-text;
 	background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1632850751/icons/search-icon.png');
 	&:hover,
 	&-active {

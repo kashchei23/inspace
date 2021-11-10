@@ -1,7 +1,7 @@
-@use '../../styles/_breakpoints.scss' as breakpoints;
-@use '../../styles/_colors.scss' as colors;
+@use '../../styles/_breakpoints' as breakpoints;
+@use '../../styles/_colors' as colors;
+@use '../../styles/_transitions' as transitions;
 @use '../../styles/_animations';
-@use '../../styles/_mixins' as mixins;
 
 .splash {
 	width: 100vw;
@@ -28,7 +28,7 @@
 }
 
 .splash-fade-out {
-	transition: all 0.4s ease;
+	transition: transitions.$slow-transition-ease;
 	opacity: 0;
 }
 

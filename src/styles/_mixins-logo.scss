@@ -1,0 +1,18 @@
+@use './_breakpoints.scss' as breakpoints;
+@use './_colors.scss' as colors;
+@use './_animations';
+
+@mixin logo {
+	&-mark {
+		display: inline-block;
+		font-weight: 500;
+		line-height: 1;
+		padding: 2px 3px;
+		margin-right: 2px;
+	}
+	&-text {
+		display: inline-block;
+		font-weight: 300;
+		color: colors.$off-white;
+	}
+}

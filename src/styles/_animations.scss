@@ -27,15 +27,59 @@
 	}
 }
 
-@keyframes fadeSlide {
+@keyframes textSlide {
 	0% {
-		opacity: 0;
 		line-height: 2;
 		margin-top: 2rem;
 	}
 	100% {
-		opacity: 1;
 		line-height: 1.7;
 		margin-top: 1rem;
+	}
+}
+
+@keyframes slideDown {
+	0% {
+		top: -100%;
+	}
+	100% {
+		top: 0;
+	}
+}
+
+@keyframes slideUp {
+	0% {
+		bottom: -100%;
+	}
+	100% {
+		bottom: 49px;
+	}
+}
+
+@keyframes slideOut {
+	0% {
+		right: -100%;
+	}
+	100% {
+		right: 60px;
+	}
+}
+
+@keyframes scaleDown {
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(0.9);
+	}
+}
+@keyframes scaleDefault {
+	0% {
+		transform: scale(0.98);
+		opacity: 0.1;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
 	}
 }

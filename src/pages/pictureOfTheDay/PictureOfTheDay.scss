@@ -1,13 +1,18 @@
-@use '../../styles/_mixins.scss' as mixins;
+@use '../../styles/_feature.scss';
 
-.picture {
-	&-title {
-		@include mixins.page-title;
-	}
+.hero {
+	@extend .hero;
 	&-image {
-		@include mixins.page-image;
+		@extend .hero-image;
 	}
 	&-video {
-		@include mixins.page-video;
+		@extend .hero-video;
+	}
+}
+
+.feature-text {
+	@extend .feature-text;
+	&-date {
+		@extend .feature-text-date;
 	}
 }

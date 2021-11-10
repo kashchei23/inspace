@@ -1,15 +1,20 @@
-@use '../../styles/_mixins.scss' as mixins;
-@use '../../styles/_animations.scss';
+@use '../../styles/_feature';
+@use '../../styles/_transitions' as transitions;
 
-.home {
-	&-title {
-		@include mixins.page-title;
-	}
+.hero {
+	@extend .hero;
 	&-image {
-		@include mixins.page-image;
+		@extend .hero-image;
 	}
 	&-video {
-		@include mixins.page-video;
+		@extend .hero-video;
+	}
+}
+
+.feature-text {
+	@extend .feature-text;
+	&-date {
+		@extend .feature-text-date;
 	}
 }
 
@@ -24,5 +29,14 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		animation: 0.5s forwards ease fadeIn;
+		&-hide {
+			transition: transitions.$slower-transition-ease;
+			opacity: 0;
+		}
+
+		&-show {
+			transition: opacity 1s ease;
+			opacity: 1;
+		}
 	}
 }

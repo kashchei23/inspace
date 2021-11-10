@@ -1,5 +1,6 @@
 @use '../../styles/_colors' as colors;
 @use '../../styles/_breakpoints' as breakpoints;
+@use '../../styles/_transitions' as transitions;
 
 .styled-link {
 	display: flex;
@@ -16,7 +17,7 @@
 	&-background {
 		width: 256px;
 		padding: 25px 0px;
-		transition: all 0.2s ease;
+		transition: transitions.$medium-transition-ease;
 		border-radius: 3px;
 		background-color: colors.$off-black;
 	}

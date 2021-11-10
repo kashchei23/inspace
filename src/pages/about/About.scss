@@ -1,6 +1,5 @@
 @use '../../styles/_colors.scss' as colors;
 @use '../../styles/_breakpoints.scss' as breakpoints;
-@use '../../styles/_mixins.scss' as mixins;
 
 .about {
 	max-width: 600px;
@@ -13,4 +12,21 @@ li {
 	color: #78a4f9 !important;
 	text-decoration: underline;
 	font-weight: 300;
+}
+
+.toolset {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	align-items: center;
+	max-width: 100%;
+	margin: auto;
+	padding: 12px;
+	border-radius: 10px;
+
+	&-logo {
+		width: auto;
+		height: 75px;
+		margin: 20px 0;
+	}
 }

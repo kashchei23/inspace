@@ -1,7 +1,8 @@
 @use '../../styles/_breakpoints.scss' as breakpoints;
+@use '../../styles/_transitions.scss' as transitions;
 
 .main-wrapper {
-	padding-top: 60px;
+	padding-top: 50px;
 	min-height: 100vh;
 	position: relative;
 }
@@ -11,4 +12,24 @@
 	margin: auto;
 	overflow: auto;
 	padding-bottom: 500px;
+}
+
+.page-shadow {
+	position: fixed;
+	display: block;
+	@media (min-width: breakpoints.$breakpoint-tablet) {
+	}
+	z-index: 8;
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+	transition: transitions.$fast-transition-ease-in;
+	background-color: rgba(0, 0, 0, 0.7);
+	opacity: 0;
+	&-show {
+		opacity: 1;
+		pointer-events: all;
+	}
 }

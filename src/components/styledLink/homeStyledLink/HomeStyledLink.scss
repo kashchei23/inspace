@@ -3,7 +3,7 @@
 
 .link-icon-home {
 	@extend .icon-link;
-	@extend .icon-link-text;
+	@extend .icon-text;
 	background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1634105272/icons/Icon_material-home_2x_umtm0z.png');
 	&:hover,
 	&:focus,

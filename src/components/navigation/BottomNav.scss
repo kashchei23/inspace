@@ -1,6 +1,7 @@
-@use '../../styles/_colors.scss' as colors;
+@use '../../styles/_colors' as colors;
 @use '../../styles/_breakpoints' as breakpoints;
-@use '../../styles/_mixins' as mixins;
+@use '../../styles/_mixins-nav' as nav-mixins;
+@use '../../styles/_transitions' as transitions;
 
 .bottomNav {
 	width: 100%;
@@ -13,9 +14,8 @@
 	bottom: -1px;
 	z-index: 20;
 	color: colors.$off-white;
-	transition: all 0.3s ease;
 	&-border {
-		@include mixins.nav-border;
+		@include nav-mixins.nav-border;
 		top: 0;
 		@media (min-width: breakpoints.$breakpoint-tablet) {
 			background-image: colors.$primary-gradient-light;
@@ -56,7 +56,7 @@
 		position: absolute;
 		right: 60px;
 		top: 0px;
-		transition: all 0.4s ease;
+		transition: transitions.$slow-transition-ease;
 		width: 45px;
 		z-index: 1;
 		&-chevron {

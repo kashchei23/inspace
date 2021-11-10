@@ -1,6 +1,6 @@
-@use '../../styles/_colors.scss' as colors;
-@use '../../styles/_breakpoints.scss' as breakpoints;
-@use '../../styles/_mixins.scss' as mixins;
+@use '../../styles/_colors' as colors;
+@use '../../styles/_breakpoints' as breakpoints;
+@use '../../styles/_mixins-logo' as logo-mixins;
 
 .footer {
 	margin-bottom: 50px;
@@ -18,7 +18,7 @@
 		margin-bottom: 0;
 	}
 	&-logo {
-		@include mixins.logo;
+		@include logo-mixins.logo;
 		font-size: 32px;
 		display: flex;
 		justify-content: center;

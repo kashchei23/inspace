@@ -1,5 +1,6 @@
 @use '../../styles/_colors' as colors;
 @use '../../styles/_breakpoints' as breakpoints;
+@use '../../styles/_transitions' as transitions;
 
 .button {
 	display: flex;
@@ -18,23 +19,27 @@
 		height: 100%;
 		border-radius: 5px;
 		background-color: colors.$off-black;
+		pointer-events: none;
 	}
 	&-animated-background {
 		width: 260px;
 		height: 50px;
-		transition: all 0.2s ease;
+		transition: transitions.$medium-transition-ease;
 		position: absolute;
 		border-radius: 50px;
 		transform: scale(0);
 		background-image: colors.$primary-gradient-light;
+		pointer-events: none;
 	}
 	&:hover &-animated-background {
 		border-radius: 3px;
 		transform: scale(1);
+		pointer-events: none;
 	}
 	&-text {
 		color: colors.$off-white;
 		position: absolute;
 		font-size: 1rem;
+		pointer-events: none;
 	}
 }

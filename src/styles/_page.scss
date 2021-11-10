@@ -1,0 +1,26 @@
+@use './_colors' as colors;
+@use './_breakpoints' as breakpoints;
+@use './_animations';
+
+.page {
+	padding: 0 24px;
+	overflow: hidden;
+	&-header {
+		animation: 1s forwards ease scaleDefault;
+		text-align: center;
+	}
+	&-title {
+		text-align: center;
+		margin: 28px 0;
+	}
+	&-scale-default {
+		animation: 1s forwards ease scaleDefault;
+	}
+	&-scale-down {
+		animation: 0.5s forwards ease-out scaleDown;
+	}
+}
+
+.animate-content-text {
+	animation: 1s forwards ease textSlide;
+}

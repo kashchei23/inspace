@@ -59,22 +59,22 @@ a {
 	text-decoration: none;
 }
 
-figure {
-	position: relative;
-	margin: 20px 0;
-	figcaption {
-		font-size: 0.75rem;
-		font-weight: 300;
-		display: flex;
-		justify-content: space-between;
-		span {
-			max-width: 200px;
-			@media (min-width: breakpoints.$breakpoint-mobile) {
-				max-width: 300px;
-			}
-			@media (min-width: breakpoints.$breakpoint-tablet) {
-				max-width: unset;
-			}
+// figure {
+// 	position: relative;
+// 	margin: 20px 0;
+figcaption {
+	font-size: 0.75rem;
+	font-weight: 300;
+	display: flex;
+	justify-content: space-between;
+	span {
+		max-width: 200px;
+		@media (min-width: breakpoints.$breakpoint-mobile) {
+			max-width: 300px;
+		}
+		@media (min-width: breakpoints.$breakpoint-tablet) {
+			max-width: unset;
 		}
 	}
 }
+// }

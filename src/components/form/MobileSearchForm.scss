@@ -1,6 +1,8 @@
-@use '../../styles/_colors.scss' as colors;
-@use '../../styles/_breakpoints.scss' as breakpoints;
-@use '../../styles/_mixins.scss' as mixins;
+@use '../../styles/_colors' as colors;
+@use '../../styles/_breakpoints' as breakpoints;
+@use '../../styles/_mixins-nav' as nav-mixins;
+@use '../../styles/_animations';
+@use '../../styles/_transitions' as transitions;
 
 .search-menu {
 	text-align: center;
@@ -12,27 +14,23 @@
 	left: 0px;
 	bottom: -100%;
 	z-index: 16;
-	transition: all 0.2s ease-out;
 	margin-top: 50px;
-	&-border {
-		@include mixins.nav-border;
-		top: 0;
-	}
 	@media (min-width: breakpoints.$breakpoint-tablet) {
-		// top: 250px;
 		bottom: 0px;
 		left: unset;
 		height: 325px;
-		border-radius: 0 0 0 10px;
 		margin: 0;
 		right: -100%;
 		width: 400px;
 	}
+	&-border {
+		@include nav-mixins.nav-border;
+		top: 0;
+	}
 	&-open {
-		bottom: 49px;
+		animation: 0.2s ease forwards slideUp;
 		@media (min-width: breakpoints.$breakpoint-tablet) {
-			bottom: 0px;
-			right: 60px;
+			animation: 0.2s ease forwards slideOut;
 		}
 	}
 }
@@ -45,7 +43,7 @@
 	display: block;
 	font-size: 0.75rem;
 	color: colors.$off-white;
-	transition: all 0.2s ease;
+	transition: transitions.$medium-transition-ease;
 	&:hover {
 		color: colors.$yellow;
 	}

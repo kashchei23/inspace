@@ -1,6 +1,7 @@
-@use '../../styles/_colors.scss' as colors;
+@use '../../styles/_colors' as colors;
 @use '../../styles/_breakpoints' as breakpoints;
 @use '../../styles/_animations';
+@use '../../styles/_transitions' as transitions;
 
 .gallery-background {
 	position: fixed;
@@ -45,7 +46,7 @@
 			opacity: 0.5;
 		}
 		&-shadow {
-			transition: all 0.2s ease;
+			transition: transitions.$medium-transition-ease;
 			box-shadow: 0 -50px 25px #0c0c0c inset;
 			opacity: 0.7;
 			width: 450px;
@@ -65,7 +66,7 @@
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		transition: all 0.2s ease;
+		transition: transitions.$medium-transition-ease;
 		animation: 1s forwards ease fadeIn;
 		transform: translate(-50%, -60%);
 	}
@@ -124,6 +125,6 @@
 }
 
 .hide-placeholder {
-	transition: all 1s ease;
+	transition: transitions.$slowest-transition-ease;
 	opacity: 0;
 }
