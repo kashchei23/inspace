@@ -27,7 +27,9 @@
 		position: absolute;
 		top: 50%;
 		left: 50%;
+		-webkit-transform: translate(-50%, -50%);
 		transform: translate(-50%, -50%);
+		-webkit-animation: 0.5s forwards ease fadeIn;
 		animation: 0.5s forwards ease fadeIn;
 		&-hide {
 			transition: transitions.$slower-transition-ease;

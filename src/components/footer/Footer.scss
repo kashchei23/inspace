@@ -14,7 +14,7 @@
 	width: 100vw;
 	z-index: 7;
 	height: 375px;
-	@media (min-width: breakpoints.$breakpoint-tablet-large) {
+	@media (min-width: breakpoints.$breakpoint-tablet) {
 		margin-bottom: 0;
 	}
 	&-logo {

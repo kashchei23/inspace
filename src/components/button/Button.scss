@@ -27,12 +27,14 @@
 		transition: transitions.$medium-transition-ease;
 		position: absolute;
 		border-radius: 50px;
+		-webkit-transform: scale(0);
 		transform: scale(0);
 		background-image: colors.$primary-gradient-light;
 		pointer-events: none;
 	}
 	&:hover &-animated-background {
 		border-radius: 3px;
+		-webkit-transform: scale(1);
 		transform: scale(1);
 		pointer-events: none;
 	}

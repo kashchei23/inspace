@@ -60,13 +60,7 @@ const Gallery = () => {
 											<div className='gallery-card'>
 												{data.media_type === 'image' ? (
 													<>
-														<LazyLoad
-															height={150}
-															offsetTop={100}
-															onContentVisible={() =>
-																console.log('look ma I have been lazyloaded!')
-															}
-														>
+														<LazyLoad height={150} offsetTop={50}>
 															<img
 																src={data.url}
 																alt={data.title}

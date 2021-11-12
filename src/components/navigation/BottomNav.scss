@@ -14,11 +14,13 @@
 	bottom: -1px;
 	z-index: 20;
 	color: colors.$off-white;
+	transition: transitions.$medium-transition-ease;
 	&-border {
 		@include nav-mixins.nav-border;
 		top: 0;
 		@media (min-width: breakpoints.$breakpoint-tablet) {
 			background-image: colors.$primary-gradient-light;
+			-webkit-transform: scale(-1);
 			transform: scale(-1);
 		}
 	}

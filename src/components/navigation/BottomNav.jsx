@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import { AppContext } from '../../context/AppContext';
 import MobileSearchForm from '../form/MobileSearchForm';
 import TheaterViewButton from '../button/theaterViewButton/TheaterViewButton';
-import FullscreenButton from '../button/fullscreenButton/FullscreenButton';
 import SearchButton from '../button/searchButton/SearchButton';
 import HomeStyledLink from '../styledLink/homeStyledLink/HomeStyledLink';
 import './BottomNav.scss';
@@ -26,7 +25,6 @@ const BottomNav = ({ isSearchActive, setIsSearchActive }) => {
 					setIsSearchActive={setIsSearchActive}
 				/>
 				<TheaterViewButton />
-				<FullscreenButton />
 				<div
 					className={`bottomNav-border ${
 						isSearchActive && 'bottomNav-border-fade'

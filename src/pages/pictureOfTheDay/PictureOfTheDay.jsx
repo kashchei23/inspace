@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
 import './PictureOfTheDay.scss';
@@ -11,6 +11,7 @@ import { convertMonthToName } from '../../helpers/dateMonthFormatter';
 const PictureOfTheDay = () => {
 	const { nasaData, navState } = useContext(AppContext);
 	const { isTheaterOn } = useContext(TheaterContext);
+	const selectedRef = useRef('');
 
 	const param = useParams();
 	const selectedPicture = nasaData.find((e) => e.date === param.date);
@@ -20,25 +21,23 @@ const PictureOfTheDay = () => {
 		return () => {
 			navState.setIsBackButtonVisible(false);
 		};
-	}, []);
+	}, [navState]);
+
+	useEffect(() => {
+		if (selectedPicture && selectedPicture.media_type === 'image') {
+			selectedRef.current.style.background = `url('${selectedPicture.url}') no-repeat center/cover`;
+		}
+	}, [nasaData, selectedPicture]);
 
 	return (
 		<>
 			{isTheaterOn && <TheaterView featurePicture={selectedPicture} />}
-			<div
-				className={`page page-scale-default ${
-					isTheaterOn && 'page-scale-down'
-				}`}
-			>
+			<div className='page'>
 				{nasaData && (
 					<>
-						<div className='hero'>
+						<div className={`hero scale-up ${isTheaterOn && 'scale-down'}`}>
 							{selectedPicture.media_type === 'image' ? (
-								<img
-									src={selectedPicture.url}
-									alt={selectedPicture.title}
-									className='hero-image'
-								/>
+								<div className='hero-image' ref={selectedRef} />
 							) : (
 								selectedPicture.media_type === 'video' && (
 									<iframe
@@ -51,9 +50,11 @@ const PictureOfTheDay = () => {
 								)
 							)}
 						</div>
-						<div className='feature-text'>
+						<div
+							className={`feature-text scale-up ${isTheaterOn && 'scale-down'}`}
+						>
 							<div>
-								<h2 className='feature-text-title'>{selectedPicture.title}</h2>
+								<h2>{selectedPicture.title}</h2>
 							</div>
 							<div className='feature-text-date animate-content-text'>
 								{convertMonthToName(selectedPicture.date)}

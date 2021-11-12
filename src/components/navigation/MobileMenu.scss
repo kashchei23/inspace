@@ -11,17 +11,21 @@
 	background-image: colors.$primary-gradient-dark;
 	padding: 24px 0;
 	width: 100%;
-	position: fixed;
+	position: absolute;
 	left: 0px;
 	top: -100%;
 	z-index: 9;
 	transition: transitions.$medium-transition-ease-out;
 	margin-top: 50px;
+	@media (min-width: breakpoints.$breakpoint-tablet) {
+		position: fixed;
+	}
 	&-border {
 		@include nav-mixins.nav-border;
 		bottom: 0;
 	}
 	&-open {
+		-webkit-animation: 0.2s ease forwards slideDown;
 		animation: 0.2s ease forwards slideDown;
 	}
 	&-links {

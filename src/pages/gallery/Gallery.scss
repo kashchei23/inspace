@@ -37,9 +37,11 @@
 		margin: 20px auto;
 		box-shadow: -3px 3px 8px #0c0c0c70;
 		&:hover .gallery-img {
+			-webkit-transform: translate(-50%, -60%) scale(1.04);
 			transform: translate(-50%, -60%) scale(1.04);
 		}
 		&:hover .gallery-video {
+			-webkit-transform: translate(-50%, -50%) scale(1.04);
 			transform: translate(-50%, -50%) scale(1.04);
 		}
 		&:hover .gallery-card-shadow {
@@ -67,11 +69,14 @@
 		top: 50%;
 		left: 50%;
 		transition: transitions.$medium-transition-ease;
+		-webkit-animation: 1s forwards ease fadeIn;
 		animation: 1s forwards ease fadeIn;
+		-webkit-transform: translate(-50%, -60%);
 		transform: translate(-50%, -60%);
 	}
 	&-video {
 		@extend .gallery-img;
+		-webkit-transform: translate(-50%, -50%);
 		transform: translate(-50%, -50%);
 		border: none;
 	}
@@ -103,6 +108,7 @@
 	top: 0;
 	width: 100%;
 	height: 100%;
+	-webkit-animation: 0.5s infinite alternate ease shimmer;
 	animation: 0.5s infinite alternate ease shimmer;
 }
 

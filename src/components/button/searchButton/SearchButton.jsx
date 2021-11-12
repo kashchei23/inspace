@@ -1,12 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { AppContext } from '../../../context/AppContext';
 import IconButton from '../iconButton/IconButton';
 import './SearchButton.scss';
 
 const SearchButton = ({ isSearchActive, setIsSearchActive }) => {
-	const { navState } = useContext(AppContext);
-
 	const handleSearchClick = () => {
 		setIsSearchActive((previsSearchActive) => !previsSearchActive);
 	};
@@ -20,6 +17,7 @@ const SearchButton = ({ isSearchActive, setIsSearchActive }) => {
 			onClick={handleSearchClick}
 			label='SEARCH'
 			data-name='search-form'
+			title='Search button'
 		/>
 	);
 };

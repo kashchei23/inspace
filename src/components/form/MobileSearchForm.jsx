@@ -29,7 +29,10 @@ const MobileSearchForm = ({ isSearchActive, setIsSearchActive }) => {
 		setToDateMax(ABSOLUTE_MAX_DATE);
 	};
 
-	const handleDateInput = (e) => {
+	const handleInputBlur = (e) => {
+		if (e.target.value === '') {
+			e.target.placeholder = 'yyyy-mm-dd';
+		}
 		if (e.target.value !== '')
 			e.target.setAttribute('class', 'text-color-blur');
 
@@ -76,6 +79,10 @@ const MobileSearchForm = ({ isSearchActive, setIsSearchActive }) => {
 		};
 	});
 
+	const handleInputFocus = (e) => {
+		e.target.placeholder = '';
+	};
+
 	return (
 		<div
 			className={`search-menu ${
@@ -94,7 +101,8 @@ const MobileSearchForm = ({ isSearchActive, setIsSearchActive }) => {
 						name='fromDate'
 						required
 						ref={inputFromRef}
-						onBlur={handleDateInput}
+						onBlur={handleInputBlur}
+						onFocus={handleInputFocus}
 						className='text-color-default'
 						title='Max search range 7 days'
 						min={fromDateMin}
@@ -112,7 +120,8 @@ const MobileSearchForm = ({ isSearchActive, setIsSearchActive }) => {
 						title='Max search range 7 days'
 						required
 						ref={inputToRef}
-						onBlur={handleDateInput}
+						onBlur={handleInputBlur}
+						onFocus={handleInputFocus}
 						className='text-color-default'
 						min={toDateMin}
 						max={toDateMax}
@@ -121,7 +130,12 @@ const MobileSearchForm = ({ isSearchActive, setIsSearchActive }) => {
 						data-name='search-form'
 					/>
 				</div>
-				<Button type='submit' className='button' innerText='SEARCH' />
+				<Button
+					type='submit'
+					className='button'
+					innerText='SEARCH'
+					dataName='search-form'
+				/>
 				<button
 					type='button'
 					className='reset-search-button'

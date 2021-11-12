@@ -1,7 +1,9 @@
-@use '../../styles/_colors.scss' as colors;
-@use '../../styles/_breakpoints.scss' as breakpoints;
+@use '../../styles/_colors' as colors;
+@use '../../styles/_breakpoints' as breakpoints;
+@use '../../styles/_page';
 
 .about {
+	@extend .scale-up;
 	max-width: 600px;
 	margin: auto;
 }

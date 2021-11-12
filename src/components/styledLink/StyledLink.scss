@@ -25,11 +25,13 @@
 		@extend .styled-link-background;
 		position: absolute;
 		border-radius: 50px;
+		-webkit-transform: scale(0);
 		transform: scale(0);
 		background-image: colors.$primary-gradient-light;
 	}
 	&:hover .styled-link-animated-background {
 		border-radius: 3px;
+		-webkit-transform: scale(1);
 		transform: scale(1);
 	}
 	&-text {

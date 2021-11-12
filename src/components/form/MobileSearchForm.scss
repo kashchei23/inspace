@@ -11,12 +11,12 @@
 	padding: 24px 0;
 	width: 100%;
 	position: fixed;
-	left: 0px;
+	left: 0;
 	bottom: -100%;
 	z-index: 16;
 	margin-top: 50px;
 	@media (min-width: breakpoints.$breakpoint-tablet) {
-		bottom: 0px;
+		bottom: 0;
 		left: unset;
 		height: 325px;
 		margin: 0;
@@ -28,8 +28,14 @@
 		top: 0;
 	}
 	&-open {
+		-webkit-animation: 0.2s ease forwards slideUp;
+		-o-animation: 0.2s ease forwards slideUp;
+		-moz-animation: 0.2s ease forwards slideUp;
 		animation: 0.2s ease forwards slideUp;
 		@media (min-width: breakpoints.$breakpoint-tablet) {
+			-webkit-animation: 0.2s ease forwards slideOut;
+			-o-animation: 0.2s ease forwards slideOut;
+			-moz-animation: 0.2s ease forwards slideOut;
 			animation: 0.2s ease forwards slideOut;
 		}
 	}
@@ -78,6 +84,7 @@ form {
 		background-color: transparent;
 	}
 	input[type='date']::-webkit-calendar-picker-indicator {
+		-webkit-filter: invert(1);
 		filter: invert(1);
 		margin: 0;
 		opacity: 0.5;

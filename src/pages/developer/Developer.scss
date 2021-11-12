@@ -1,8 +1,10 @@
-@use '../../styles/_colors.scss' as colors;
+@use '../../styles/_colors' as colors;
 @use '../../styles/_breakpoints' as breakpoints;
-@use '../../components/button/Button.scss';
+@use '../../components/button/Button';
+@use '../../styles/_page';
 
 .developer {
+	@extend .scale-up;
 	margin: 40px 0;
 	display: flex;
 	justify-content: center;
@@ -14,6 +16,8 @@
 	&-img {
 		max-width: 400px;
 		width: 100%;
+		height: -webkit-max-content;
+		height: -moz-max-content;
 		height: max-content;
 		display: block;
 		margin: 0 auto 40px;

@@ -2,26 +2,28 @@
 @use './_colors.scss' as colors;
 @use './_animations';
 
-$hero-height-mobile: 175px;
+$hero-height-mobile: 350px;
 $hero-height-tablet: 600px;
 
 .hero {
 	height: $hero-height-mobile;
-	overflow: hidden;
 	position: absolute;
 	left: 0;
-	top: 0px;
+	top: 50px;
 	width: 100%;
 	padding: 0;
 	@media (min-width: breakpoints.$breakpoint-tablet) {
 		height: $hero-height-tablet;
 	}
 	&-image {
-		width: 100%;
+		height: $hero-height-mobile;
 		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
+		left: 0;
+		width: 100%;
+		padding: 0;
+		@media (min-width: breakpoints.$breakpoint-tablet) {
+			height: $hero-height-tablet;
+		}
 	}
 	&-video {
 		border: none;
@@ -33,7 +35,6 @@ $hero-height-tablet: 600px;
 }
 
 .feature-text {
-	animation: 1s forwards ease fadeIn;
 	margin-top: $hero-height-mobile;
 	padding-top: 8px;
 	@media (min-width: breakpoints.$breakpoint-tablet) {
