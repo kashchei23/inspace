@@ -11,8 +11,7 @@ export const getMaxDate = (input) => {
 	const firstDate = new Date('1995-06-16');
 	const firstDateInMilliseconds = firstDate.getTime();
 
-	const currentDate = new Date();
-	const currentDateInMilliseconds = currentDate.getTime();
+	const currentDate = Date.now();
 
 	const userDate = new Date(input.value);
 	const inputDateInMilliseconds = userDate.getTime();
@@ -34,8 +33,8 @@ export const getMaxDate = (input) => {
 
 	if (
 		input.name === 'fromDate' &&
-		currentDateInMilliseconds - inputDateInMilliseconds > sevenDays
+		currentDate - inputDateInMilliseconds > sevenDays
 	) {
 		return formatDate(maxDate);
-	} else return formatDate(currentDate);
+	} else return formatDate(new Date());
 };
