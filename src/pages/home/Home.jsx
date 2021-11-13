@@ -31,7 +31,6 @@ const Home = () => {
 
 	const currentPicture = currentNasaPicture && currentNasaPicture[0];
 
-	// window.scrollTo({ top: 0 });
 	useEffect(() => {
 		if (!isLoading && currentNasaPicture) {
 			setTimeout(() => {

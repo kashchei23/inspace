@@ -10,18 +10,11 @@ import Gallery from '../pages/gallery/Gallery';
 import PictureOfTheDay from '../pages/pictureOfTheDay/PictureOfTheDay';
 import { AppContextProvider } from '../context/AppContext';
 import { useFetch } from '../api/useFetch';
+import TheaterViewProvider from '../context/TheaterViewProvider';
 
 const App = () => {
 	const [isPageShadowOn, setIsPageShadowOn] = useState(false);
 	const [isBackButtonVisible, setIsBackButtonVisible] = useState(false);
-
-	//> 2 types of Page Shadows - toggle logic can be in HOC
-	//* Theater shadow - or Layer comp. Home/PoTD/TheaterButton
-	//* Menu/Search shadow - or Layer comp. Home/PoTD/TheaterButton
-
-	//* backbutton should be in useContext
-
-	//* TheaterView should be UseContext
 
 	const navState = {
 		isPageShadowOn,
@@ -62,30 +55,31 @@ const App = () => {
 
 	return (
 		<AppContextProvider value={state}>
-			<BrowserRouter>
-				<Layout>
-					<Switch>
-						<Route exact path='/'>
-							<Home />
-						</Route>
-						<Route path='/about'>
-							<About />
-						</Route>
-						<Route path='/developer'>
-							<Developer />
-						</Route>
-						<Route path='/gallery/:query'>
-							<Gallery />
-						</Route>
-						<Route path={`/picture-of-the-day/:date`}>
-							<PictureOfTheDay />
-						</Route>
-					</Switch>
-				</Layout>
-			</BrowserRouter>
+			<TheaterViewProvider>
+				<BrowserRouter>
+					<Layout>
+						<Switch>
+							<Route exact path='/'>
+								<Home />
+							</Route>
+							<Route path='/about'>
+								<About />
+							</Route>
+							<Route path='/developer'>
+								<Developer />
+							</Route>
+							<Route path='/gallery/:query'>
+								<Gallery />
+							</Route>
+							<Route path={`/picture-of-the-day/:date`}>
+								<PictureOfTheDay />
+							</Route>
+						</Switch>
+					</Layout>
+				</BrowserRouter>
+			</TheaterViewProvider>
 		</AppContextProvider>
 	);
 };
 
 export default App;
-//89
