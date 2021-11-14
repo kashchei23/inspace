@@ -105,7 +105,7 @@ The app was built using React, vanilla javascript, and SCSS with a mobile first 
 <br>
 
 <h2 id="links"> Links </h2>
-BuzzTraq: 
+InSpace:
 https://inspace-apod.web.app/
 
 My Portfolio:
