@@ -32,7 +32,7 @@ const Gallery = () => {
 	}, [isLoading, nasaData]);
 
 	return (
-		<div className='page'>
+		<div className='page gallery-page'>
 			<div className='gallery-background' />
 			{error ? (
 				<p className=''>{error}</p>

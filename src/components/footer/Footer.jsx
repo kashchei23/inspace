@@ -8,7 +8,7 @@ const Footer = () => {
 		email: 'mailto:kashchei23@gmail.com?subject=FRONT END DEV PORTFOLIO',
 		github: 'https://github.com/kashchei23/inspace',
 		linkedin: 'https://www.linkedin.com/in/danielrbrown/',
-		portfolio: 'https://portfolio-52086.firebaseapp.com/',
+		portfolio: 'https://daniel-brown-portfolio.web.app/',
 	};
 
 	return (
