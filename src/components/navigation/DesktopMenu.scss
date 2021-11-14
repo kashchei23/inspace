@@ -20,14 +20,14 @@
 			&:hover,
 			&:focus {
 				outline: none;
-				color: #d99c2a;
+				color: colors.$star-yellow;
 			}
 		}
 		.topNav-search-button {
 			border-radius: 3px;
 			background: colors.$primary-gradient-light;
 			padding: 0 8px;
-			color: colors.$off-white;
+			color: colors.$ice-white;
 			padding: 4px 32px;
 			font-size: 16px;
 			border: none;

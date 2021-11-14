@@ -5,7 +5,7 @@
 
 .developer {
 	@extend .scale-up;
-	margin: 40px 0;
+	margin: 60px 0;
 	display: flex;
 	justify-content: center;
 	flex-direction: column-reverse;
@@ -38,7 +38,7 @@
 			}
 		}
 		h2 {
-			color: colors.$purple;
+			color: colors.$dusk-purple;
 			font-weight: 400;
 			text-align: center;
 			@media (min-width: breakpoints.$breakpoint-tablet-large) {

@@ -5,13 +5,13 @@
 .about {
 	@extend .scale-up;
 	max-width: 600px;
-	margin: auto;
+	margin: 40px auto 0;
 }
 li {
 	margin: 16px 0;
 }
 .external-link {
-	color: #78a4f9 !important;
+	color: colors.$sky-blue !important;
 	text-decoration: underline;
 	font-weight: 300;
 }

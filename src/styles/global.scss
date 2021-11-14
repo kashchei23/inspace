@@ -11,12 +11,12 @@
 $globalFont: hero-new, sans-serif;
 
 html {
-	background-color: colors.$off-black;
+	background-color: colors.$space-black;
 	box-sizing: border-box;
 	font-family: $globalFont;
 	font-display: swap;
 	font-style: normal;
-	color: colors.$off-white;
+	color: colors.$ice-white;
 	font-size: 16px;
 	@media (min-width: breakpoints.$breakpoint-mobile) {
 		font-size: 16px;
@@ -55,6 +55,6 @@ li {
 }
 
 a {
-	color: colors.$off-white;
+	color: colors.$ice-white;
 	text-decoration: none;
 }

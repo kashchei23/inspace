@@ -7,7 +7,7 @@
 .search-menu {
 	text-align: center;
 	font-size: 16px;
-	background-image: colors.$primary-gradient-dark;
+	background-image: colors.$dark-matter-gradient;
 	padding: 24px 0;
 	width: 100%;
 	position: fixed;
@@ -48,10 +48,10 @@
 	margin: auto;
 	display: block;
 	font-size: 0.75rem;
-	color: colors.$off-white;
+	color: colors.$ice-white;
 	transition: transitions.$medium-transition-ease;
 	&:hover {
-		color: colors.$yellow;
+		color: colors.$star-yellow;
 	}
 }
 
@@ -80,7 +80,7 @@ form {
 		text-align: center;
 		outline: none;
 		border: none;
-		border-bottom: 2px solid colors.$off-white;
+		border-bottom: 2px solid colors.$ice-white;
 		background-color: transparent;
 	}
 	input[type='date']::-webkit-calendar-picker-indicator {
@@ -95,9 +95,9 @@ label {
 	vertical-align: bottom;
 }
 .text-color-default {
-	color: #696969;
+	color: colors.$moon-gray;
 }
 
 .text-color-blur {
-	color: colors.$off-white;
+	color: colors.$ice-white;
 }

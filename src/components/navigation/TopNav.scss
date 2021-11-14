@@ -7,13 +7,13 @@
 .topNav {
 	width: 100%;
 	margin: auto;
-	background-color: colors.$off-black;
+	background-color: colors.$space-black;
 	height: 50px;
 	display: flex;
 	align-items: center;
 	top: 0;
 	z-index: 20;
-	color: colors.$off-white;
+	color: colors.$ice-white;
 	position: absolute;
 	@media (min-width: breakpoints.$breakpoint-tablet) {
 		position: fixed;
@@ -50,14 +50,14 @@
 	z-index: 3;
 	&-open {
 		transition: transitions.$medium-transition-ease;
-		background-color: colors.$dark-purple;
+		background-color: colors.$dark-matter-purple;
 	}
 	@media (min-width: breakpoints.$breakpoint-tablet) {
 		display: none;
 	}
 	&-bars {
 		pointer-events: none;
-		background-color: colors.$off-white;
+		background-color: colors.$ice-white;
 		width: 35px;
 		height: 2px;
 		transition: transitions.$fast-transition-ease-in;
@@ -99,6 +99,6 @@
 	font-size: 24px;
 	&-mark {
 		background-image: colors.$primary-gradient-light;
-		color: colors.$off-black;
+		color: colors.$space-black;
 	}
 }

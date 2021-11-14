@@ -5,7 +5,7 @@
 
 .bottomNav {
 	width: 100%;
-	background-color: colors.$off-black;
+	background-color: colors.$space-black;
 	height: 55px;
 	display: flex;
 	align-items: center;
@@ -13,7 +13,7 @@
 	position: fixed;
 	bottom: -1px;
 	z-index: 20;
-	color: colors.$off-white;
+	color: colors.$ice-white;
 	transition: transitions.$medium-transition-ease;
 	&-border {
 		@include nav-mixins.nav-border;
@@ -32,7 +32,7 @@
 		width: 60px;
 		height: 325px;
 		flex-direction: column;
-		background-color: colors.$slate;
+		background-color: colors.$space-dust-black;
 		&-active {
 			right: 0;
 		}
@@ -67,7 +67,7 @@
 			background-repeat: no-repeat;
 			background-position: 40% 50%;
 			background-size: 15px 35px;
-			background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1633031774/icons/chevron-off-white_f9t997.png');
+			background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1633031774/icons/chevron-star-white_f9t997.png');
 		}
 		&-theater-mode {
 			opacity: 0.5;

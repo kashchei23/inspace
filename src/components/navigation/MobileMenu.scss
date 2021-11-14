@@ -8,7 +8,7 @@
 	@media (min-width: breakpoints.$breakpoint-tablet) {
 		display: none;
 	}
-	background-image: colors.$primary-gradient-dark;
+	background-image: colors.$dark-matter-gradient;
 	padding: 24px 0;
 	width: 100%;
 	position: absolute;
@@ -35,12 +35,12 @@
 		a {
 			font-size: 16px;
 			font-weight: 400;
-			color: colors.$off-white;
+			color: colors.$ice-white;
 			text-decoration: none;
 			padding: 20px;
 			&:hover {
 				transition: transitions.$fast-transition-ease-in;
-				color: colors.$yellow;
+				color: colors.$star-yellow;
 			}
 		}
 	}
@@ -48,7 +48,7 @@
 		border-radius: 3px;
 		background: colors.$primary-gradient-light;
 		padding: 0 8px;
-		color: colors.$off-white;
+		color: colors.$ice-white;
 		padding: 4px 32px;
 		font-size: 16px;
 		border: none;

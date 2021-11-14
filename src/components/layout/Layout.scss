@@ -9,7 +9,8 @@
 
 .main-container {
 	max-width: breakpoints.$breakpoint-tablet-large;
-	margin: 40px auto 0;
+	margin: auto;
+
 	overflow: auto;
 	padding-bottom: 500px;
 }

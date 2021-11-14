@@ -9,11 +9,14 @@
 	right: 0;
 	width: 100vw;
 	height: 100vh;
-	background-image: colors.$off-black-gradient;
+	background-image: colors.$space-black-gradient;
 	z-index: -1;
 }
+.gallery-page {
+	margin-top: 20px;
+}
 .gallery {
-	margin: auto;
+	margin: 40px auto 0;
 	max-width: 400px;
 	@media (min-width: breakpoints.$breakpoint-tablet-large) {
 		display: flex;
@@ -113,7 +116,7 @@
 }
 
 .test {
-	background-color: colors.$slate;
+	background-color: colors.$space-dust-black;
 	position: absolute;
 	z-index: 1;
 	left: 0;
