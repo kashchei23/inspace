@@ -1,0 +1,13 @@
+@use '../iconLink/IconLink.scss';
+@use '../../../styles/_breakpoints.scss' as breakpoints;
+
+.link-icon-home {
+	@extend .icon-link;
+	@extend .icon-text;
+	background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1634105272/icons/Icon_material-home_2x_umtm0z.png');
+	&:hover,
+	&:focus,
+	&:active {
+		background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1634148446/icons/Icon-home-active_yrrajy.png');
+	}
+}

@@ -1,0 +1,32 @@
+@use './_colors' as colors;
+@use './_breakpoints' as breakpoints;
+@use './_animations';
+
+.page {
+	padding: 0 24px;
+	overflow: hidden;
+	&-header {
+		-webkit-animation: 1s forwards ease scaleDefault;
+		animation: 1s forwards ease scaleDefault;
+		text-align: center;
+	}
+	&-title {
+		text-align: center;
+		margin: 28px 0;
+	}
+}
+
+.scale-up {
+	-webkit-animation: 0.2s forwards ease scaleDefault;
+	animation: 0.2s forwards ease scaleDefault;
+}
+
+.scale-down {
+	-webkit-animation: 0.5s forwards ease-out scaleDown;
+	animation: 0.5s forwards ease-out scaleDown;
+}
+
+.animate-content-text {
+	-webkit-animation: 1s forwards ease textSlide;
+	animation: 1s forwards ease textSlide;
+}

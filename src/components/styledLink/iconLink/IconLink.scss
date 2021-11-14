@@ -1,0 +1,32 @@
+@use '../../../styles/_colors' as colors;
+@use '../../../styles/_breakpoints' as breakpoints;
+@use '../../../styles/_transitions' as transitions;
+
+.icon-link {
+	background: transparent;
+	padding: 36px 6px 6px;
+	height: 55px;
+	width: 85px;
+	border: none;
+	box-shadow: none;
+	background-repeat: no-repeat;
+	background-position: 50% 35%;
+	position: relative;
+	background-size: 20px 20px;
+	opacity: 0.5;
+	transition: transitions.$medium-transition-ease;
+	@media (min-width: breakpoints.$breakpoint-tablet) {
+		height: 60px;
+		width: 65px;
+	}
+	&:hover,
+	&:focus,
+	&:active {
+		opacity: 1;
+	}
+	.icon-text {
+		color: colors.$ice-white;
+		font-size: 0.5rem;
+		text-align: center;
+	}
+}

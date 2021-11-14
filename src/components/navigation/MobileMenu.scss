@@ -1,0 +1,58 @@
+@use '../../styles/_colors.scss' as colors;
+@use '../../styles/_breakpoints' as breakpoints;
+@use '../../styles/_mixins-nav.scss' as nav-mixins;
+@use '../../styles/_transitions' as transitions;
+
+.mobile-menu {
+	display: block;
+	@media (min-width: breakpoints.$breakpoint-tablet) {
+		display: none;
+	}
+	background-image: colors.$dark-matter-gradient;
+	padding: 24px 0;
+	width: 100%;
+	position: absolute;
+	left: 0px;
+	top: -100%;
+	z-index: 9;
+	transition: transitions.$medium-transition-ease-out;
+	margin-top: 50px;
+	@media (min-width: breakpoints.$breakpoint-tablet) {
+		position: fixed;
+	}
+	&-border {
+		@include nav-mixins.nav-border;
+		bottom: 0;
+	}
+	&-open {
+		-webkit-animation: 0.2s ease forwards slideDown;
+		animation: 0.2s ease forwards slideDown;
+	}
+	&-links {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		a {
+			font-size: 16px;
+			font-weight: 400;
+			color: colors.$ice-white;
+			text-decoration: none;
+			padding: 20px;
+			&:hover {
+				transition: transitions.$fast-transition-ease-in;
+				color: colors.$star-yellow;
+			}
+		}
+	}
+	.mobile-menu-search-button {
+		border-radius: 3px;
+		background: colors.$primary-gradient-light;
+		padding: 0 8px;
+		color: colors.$ice-white;
+		padding: 4px 32px;
+		font-size: 16px;
+		border: none;
+		margin: 16px 0;
+		box-shadow: colors.$box-shadow;
+	}
+}

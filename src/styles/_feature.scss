@@ -1,0 +1,51 @@
+@use './_breakpoints.scss' as breakpoints;
+@use './_colors.scss' as colors;
+@use './_animations';
+
+$hero-height-mobile: 350px;
+$hero-height-tablet: 570px;
+
+.hero {
+	height: $hero-height-mobile;
+	position: absolute;
+	left: 0;
+	top: 50px;
+	width: 100%;
+	padding: 0;
+	@media (min-width: breakpoints.$breakpoint-tablet) {
+		height: $hero-height-tablet;
+	}
+	&-image {
+		height: $hero-height-mobile;
+		position: absolute;
+		left: 0;
+		width: 100%;
+		padding: 0;
+		@media (min-width: breakpoints.$breakpoint-tablet) {
+			height: $hero-height-tablet;
+		}
+	}
+	&-video {
+		border: none;
+		height: inherit;
+		width: 100%;
+		@media (min-width: breakpoints.$breakpoint-tablet) {
+		}
+	}
+}
+
+.feature-text {
+	margin-top: $hero-height-mobile;
+	padding-top: 8px;
+	@media (min-width: breakpoints.$breakpoint-tablet) {
+		margin-top: $hero-height-tablet;
+	}
+	&-date {
+		font-size: 0.88rem;
+		display: flex;
+		justify-content: space-between;
+		bottom: 0;
+		right: 0;
+		margin: 16px 0;
+	}
+}

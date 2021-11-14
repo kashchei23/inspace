@@ -1,0 +1,104 @@
+@use '../../styles/_colors.scss' as colors;
+@use '../../styles/_breakpoints' as breakpoints;
+@use '../../styles/_mixins-logo' as logo-mixins;
+@use '../../styles/_mixins-nav.scss' as nav-mixins;
+@use '../../styles/_transitions' as transitions;
+
+.topNav {
+	width: 100%;
+	margin: auto;
+	background-color: colors.$space-black;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	top: 0;
+	z-index: 20;
+	color: colors.$ice-white;
+	position: absolute;
+	@media (min-width: breakpoints.$breakpoint-tablet) {
+		position: fixed;
+	}
+	&-border {
+		@include nav-mixins.nav-border;
+		bottom: 0;
+	}
+	&-back-icon {
+		outline: none;
+		width: 40px;
+		margin-left: -40px;
+		height: 100%;
+		padding: 14px;
+		z-index: 1;
+		transition: transitions.$medium-transition-ease-out;
+		&-show {
+			margin-left: 8px;
+		}
+		img {
+			width: 100%;
+		}
+	}
+}
+
+.menu-button {
+	outline: none;
+	border: none;
+	background-color: transparent;
+	padding: 10px 24px;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	z-index: 3;
+	&-open {
+		transition: transitions.$medium-transition-ease;
+		background-color: colors.$dark-matter-purple;
+	}
+	@media (min-width: breakpoints.$breakpoint-tablet) {
+		display: none;
+	}
+	&-bars {
+		pointer-events: none;
+		background-color: colors.$ice-white;
+		width: 35px;
+		height: 2px;
+		transition: transitions.$fast-transition-ease-in;
+		position: relative;
+		&:nth-child(2) {
+			margin: 6px 0;
+		}
+		&:nth-child(4) {
+			position: absolute;
+			top: 50%;
+			bottom: 50%;
+			-webkit-transform: translate(0%, -50%);
+			transform: translate(0%, -50%);
+		}
+	}
+	&-fixed {
+		position: fixed;
+		right: 0;
+	}
+}
+
+.open-menu {
+	&:nth-of-type(odd) {
+		opacity: 0;
+	}
+	&:nth-of-type(2) {
+		-webkit-transform: rotate(45deg);
+		transform: rotate(45deg);
+	}
+	&:nth-of-type(4) {
+		-webkit-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+	}
+}
+
+.topNav-logo {
+	@include logo-mixins.logo;
+	margin-left: 24px;
+	font-size: 24px;
+	&-mark {
+		background-image: colors.$primary-gradient-light;
+		color: colors.$space-black;
+	}
+}

@@ -1,0 +1,55 @@
+@use '../../styles/_colors' as colors;
+@use '../../styles/_breakpoints' as breakpoints;
+@use '../../styles/_mixins-logo' as logo-mixins;
+
+.footer {
+	margin-bottom: 50px;
+	background-image: colors.$primary-gradient-slant;
+	padding: 50px 24px 30px;
+	color: colors.$ice-white;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100vw;
+	z-index: 7;
+	height: 375px;
+	@media (min-width: breakpoints.$breakpoint-tablet) {
+		margin-bottom: 0;
+	}
+	&-logo {
+		@include logo-mixins.logo;
+		font-size: 32px;
+		display: flex;
+		justify-content: center;
+		&-mark-transparent {
+			background-color: colors.$ice-white;
+			width: 40px;
+			margin-right: 3px;
+			height: 40px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			.footer-logo-mark {
+				display: block;
+				background: -webkit-linear-gradient(#452d54, #1a315e);
+				background-clip: text;
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				font-weight: 500;
+				line-height: 1.2;
+				margin-right: 0;
+			}
+		}
+	}
+	&-socials {
+		display: flex;
+		max-width: 400px;
+		justify-content: space-between;
+		margin: 60px auto;
+	}
+	&-footnote {
+		font-size: smaller;
+		font-weight: 300;
+	}
+}

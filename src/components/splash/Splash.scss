@@ -1,0 +1,74 @@
+@use '../../styles/_breakpoints' as breakpoints;
+@use '../../styles/_colors' as colors;
+@use '../../styles/_transitions' as transitions;
+@use '../../styles/_animations';
+
+.splash {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	z-index: 30;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	-webkit-animation: 1s ease fadeIn;
+	animation: 1s ease fadeIn;
+	&-vid {
+		display: none;
+		@media (min-width: breakpoints.$breakpoint-mobile) {
+			height: 100vh;
+			display: block;
+		}
+	}
+	&-still {
+		display: block;
+		width: 100vw;
+		height: 100vh;
+		background: url('https://res.cloudinary.com/obkidz/image/upload/v1636606546/inspace/splash_still_zauqss.png');
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		top: 0;
+		left: 0;
+		position: fixed;
+		-webkit-animation: 3s forwards ease splashZoom, 1s forwards ease fadeIn;
+		animation: 3s forwards ease splashZoom, 1s forwards ease fadeIn;
+		@media (min-width: breakpoints.$breakpoint-mobile) {
+			display: none;
+		}
+	}
+	&-logo {
+		position: absolute;
+		width: 200px;
+		-webkit-animation: 1s forwards ease scaleUp, 1s forwards ease fadeIn;
+		animation: 1s forwards ease scaleUp, 1s forwards ease fadeIn;
+	}
+}
+
+.splash-fade-out {
+	-webkit-animation: 0.5s ease forwards fadeOut;
+	animation: 0.5s ease forwards fadeOut;
+}
+
+@-webkit-keyframes splashZoom {
+	0% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	100% {
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1);
+	}
+}
+@keyframes splashZoom {
+	0% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	100% {
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1);
+	}
+}

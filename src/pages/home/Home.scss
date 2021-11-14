@@ -1,0 +1,44 @@
+@use '../../styles/_feature';
+@use '../../styles/_transitions' as transitions;
+
+.hero {
+	@extend .hero;
+	&-image {
+		@extend .hero-image;
+	}
+	&-video {
+		@extend .hero-video;
+	}
+}
+
+.feature-text {
+	@extend .feature-text;
+	&-date {
+		@extend .feature-text-date;
+	}
+}
+
+.content-loader {
+	height: 450px;
+	position: relative;
+	&-image {
+		width: 150px;
+		height: auto;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		-webkit-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		-webkit-animation: 0.5s forwards ease fadeIn;
+		animation: 0.5s forwards ease fadeIn;
+		&-hide {
+			transition: transitions.$slower-transition-ease;
+			opacity: 0;
+		}
+
+		&-show {
+			transition: opacity 1s ease;
+			opacity: 1;
+		}
+	}
+}

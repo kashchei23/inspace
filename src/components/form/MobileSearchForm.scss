@@ -1,0 +1,103 @@
+@use '../../styles/_colors' as colors;
+@use '../../styles/_breakpoints' as breakpoints;
+@use '../../styles/_mixins-nav' as nav-mixins;
+@use '../../styles/_animations';
+@use '../../styles/_transitions' as transitions;
+
+.search-menu {
+	text-align: center;
+	font-size: 16px;
+	background-image: colors.$dark-matter-gradient;
+	padding: 24px 0;
+	width: 100%;
+	position: fixed;
+	left: 0;
+	bottom: -100%;
+	z-index: 16;
+	margin-top: 50px;
+	@media (min-width: breakpoints.$breakpoint-tablet) {
+		bottom: 0;
+		left: unset;
+		height: 325px;
+		margin: 0;
+		right: -100%;
+		width: 400px;
+	}
+	&-border {
+		@include nav-mixins.nav-border;
+		top: 0;
+	}
+	&-open {
+		-webkit-animation: 0.2s ease forwards slideUp;
+		-o-animation: 0.2s ease forwards slideUp;
+		-moz-animation: 0.2s ease forwards slideUp;
+		animation: 0.2s ease forwards slideUp;
+		@media (min-width: breakpoints.$breakpoint-tablet) {
+			-webkit-animation: 0.2s ease forwards slideOut;
+			-o-animation: 0.2s ease forwards slideOut;
+			-moz-animation: 0.2s ease forwards slideOut;
+			animation: 0.2s ease forwards slideOut;
+		}
+	}
+}
+
+.reset-search-button {
+	border: none;
+	outline: none;
+	background: transparent;
+	margin: auto;
+	display: block;
+	font-size: 0.75rem;
+	color: colors.$ice-white;
+	transition: transitions.$medium-transition-ease;
+	&:hover {
+		color: colors.$star-yellow;
+	}
+}
+
+form {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	max-width: 260px;
+	margin: auto;
+	@media (min-width: breakpoints.$breakpoint-tablet-large) {
+		margin-top: 0;
+	}
+}
+
+.form-input {
+	width: 100%;
+	display: flex;
+	flex-flow: row nowrap;
+	margin: 12px 0;
+	justify-content: space-between;
+	align-items: flex-end;
+	input {
+		border-radius: 0;
+		width: 150px;
+		height: 40px;
+		text-align: center;
+		outline: none;
+		border: none;
+		border-bottom: 2px solid colors.$ice-white;
+		background-color: transparent;
+	}
+	input[type='date']::-webkit-calendar-picker-indicator {
+		-webkit-filter: invert(1);
+		filter: invert(1);
+		margin: 0;
+		opacity: 0.5;
+	}
+}
+
+label {
+	vertical-align: bottom;
+}
+.text-color-default {
+	color: colors.$moon-gray;
+}
+
+.text-color-blur {
+	color: colors.$ice-white;
+}

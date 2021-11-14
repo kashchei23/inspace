@@ -1,0 +1,18 @@
+@use '../../styles/_feature.scss';
+
+.hero {
+	@extend .hero;
+	&-image {
+		@extend .hero-image;
+	}
+	&-video {
+		@extend .hero-video;
+	}
+}
+
+.feature-text {
+	@extend .feature-text;
+	&-date {
+		@extend .feature-text-date;
+	}
+}

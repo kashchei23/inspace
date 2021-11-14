@@ -1,0 +1,60 @@
+@use './_colors' as colors;
+@use './_breakpoints' as breakpoints;
+@use './normalize';
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+$globalFont: hero-new, sans-serif;
+
+html {
+	background-color: colors.$space-black;
+	box-sizing: border-box;
+	font-family: $globalFont;
+	font-display: swap;
+	font-style: normal;
+	color: colors.$ice-white;
+	font-size: 16px;
+	@media (min-width: breakpoints.$breakpoint-mobile) {
+		font-size: 16px;
+	}
+	@media (min-width: breakpoints.$breakpoint-tablet-large) {
+		font-size: 18px;
+	}
+}
+html,
+body {
+	height: 100%;
+}
+
+h1 {
+	font-size: 1.75rem;
+	font-weight: 300;
+}
+h2 {
+	font-size: 1.25rem;
+	font-weight: 300;
+}
+
+h4 {
+	font-size: 1rem;
+	font-weight: 400;
+}
+
+p,
+li {
+	font-size: 1rem;
+	font-weight: 200;
+	line-height: 1.7;
+	@media (min-width: breakpoints.$breakpoint-mobile) {
+		line-height: 1.8;
+	}
+}
+
+a {
+	color: colors.$ice-white;
+	text-decoration: none;
+}

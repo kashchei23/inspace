@@ -1,0 +1,23 @@
+$nav-gradient: linear-gradient(to left, #7f67af, #204684);
+$primary-gradient-slant: linear-gradient(190deg, #452d54, #1a315e);
+$primary-gradient-light: linear-gradient(
+	225deg,
+	lighten(#452d54, 20%),
+	lighten(#1a315e, 20%)
+);
+$dark-matter-gradient: linear-gradient(40deg, #191919, #2f1f39);
+$space-black-gradient: linear-gradient(40deg, #1d1d1d, #282828);
+
+$space-black: #191919;
+$ice-white: #eae7e2;
+$dusk-purple: #9574d7;
+$star-yellow: #d99c2a;
+$dark-matter-purple: #2f1f39;
+$space-dust-black: #1d1d1d;
+$sky-blue: #78a4f9;
+$moon-gray: #696969;
+
+// Shadow
+$drop-shadow: drop-shadow(-35px 30px 40px rgba(0, 0, 0, 0.6));
+$drop-shadow-light: drop-shadow(-45px 30px 30px rgba(0, 0, 0, 0.4));
+$box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
