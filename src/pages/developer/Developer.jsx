@@ -11,10 +11,11 @@ const Developer = () => (
 					<h1>Daniel Brown</h1>
 					<h2>Front End UI/UX Developer</h2>
 					<p>
+						I like to build things that are easy to use, and easy on the eyes.
 						In addition to React, Javascript, and SCSS, I use tools such as
-						Adobe Illustrator, XD, After Effects and others to add extra nuance
-						to designs. Always curious, always learning, and always searching
-						for ways to solve problems.
+						Adobe Illustrator, XD, and After Effects to bring designs to life.
+						Always curious, always learning, and always searching for ways to
+						solve problems.
 					</p>
 					<p>
 						This app was inspired by my children, in particular my son, who
