@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import '../styles/global.scss';
 import Layout from '../components/layout/Layout';
 import Home from '../pages/home/Home';
-import About from '../pages/about/About';
-import Developer from '../pages/developer/Developer';
-import Gallery from '../pages/gallery/Gallery';
-import PictureOfTheDay from '../pages/pictureOfTheDay/PictureOfTheDay';
 import { AppContextProvider } from '../context/AppContext';
 import { useFetch } from '../api/useFetch';
 import TheaterViewProvider from '../context/TheaterViewProvider';
+
+const About = lazy(() => import('../pages/about/About'));
+const Developer = lazy(() => import('../pages/developer/Developer'));
+const Gallery = lazy(() => import('../pages/gallery/Gallery'));
+const PictureOfTheDay = lazy(() =>
+	import('../pages/pictureOfTheDay/PictureOfTheDay')
+);
 
 const App = () => {
 	const [isPageShadowOn, setIsPageShadowOn] = useState(false);
@@ -58,23 +61,18 @@ const App = () => {
 			<TheaterViewProvider>
 				<BrowserRouter>
 					<Layout>
-						<Switch>
-							<Route exact path='/'>
-								<Home />
-							</Route>
-							<Route path='/about'>
-								<About />
-							</Route>
-							<Route path='/developer'>
-								<Developer />
-							</Route>
-							<Route path='/gallery/:query'>
-								<Gallery />
-							</Route>
-							<Route path={`/picture-of-the-day/:date`}>
-								<PictureOfTheDay />
-							</Route>
-						</Switch>
+						<Suspense fallback={<></>}>
+							<Switch>
+								<Route exact component={Home} path='/' />
+								<Route component={About} path='/about' />
+								<Route component={Developer} path='/developer' />
+								<Route component={Gallery} path='/gallery/:query' />
+								<Route
+									component={PictureOfTheDay}
+									path={`/picture-of-the-day/:date`}
+								/>
+							</Switch>
+						</Suspense>
 					</Layout>
 				</BrowserRouter>
 			</TheaterViewProvider>
